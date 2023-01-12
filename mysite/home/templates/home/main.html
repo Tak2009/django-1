@@ -1,0 +1,37 @@
+{% extends "base_menu.html" %}
+{% block content %}
+    <h1>Welcome to {{ settings.APP_NAME }}</h1>
+    <h3>
+    I know I am getting old.... Life is beautiful but sometimes harsh...
+    I now have too many app icons on my PC Desktop, mobile and everywhere.
+    And checking each app for a specific reason is getting really tiring....
+    Thus, this website has been created for this utterly selfish purpose; I want everything I need at one place!!
+    This web app will be my one-stop web app to keep my daily life running!
+    </h3>
+    <br/>
+    <br/>
+    <ul class="nav navbar-nav">
+        <li>
+            <h4>
+                <strong>Recipes:</strong> Every year, I need to spend too much time to google specific recipes during the festive season.
+                I sometimes can get exactly the same reciepes I referred in the preveous year but sometimes NOT.
+                I always try keeping the URLs with high rated reviews for the next year but my "recordkeeping system" does not properly functioning.
+                To prevent from spending too much time to recover my important recipe URLs every year,
+                the "Recipes" menu will be my centralized recipe book.
+            </h4>
+        </li>
+        <br/>
+        <li>
+            <h4>
+                <strong>Cat Monitor:</strong>: We used to have mice issues in our garage. Thus I built an auto motion detection night vision device with
+                <a href="https://github.com/Tak2009/raspi-2-motion-detect-sensor-oauth2-tk" target="_blank">Raspberry Pi and Python</a> to detect mice during night time. Now we have a cat and all the issues are gone!!
+                Thus, I have decided to use the device not only to monitor the cat but also keep the photo records as her blog posts.
+                She is a lovely cat but we do not know what she is doing during night time. Once a motion is detected by the device,
+                the device send the pic (as a hard evidence!) to the web server via HTTP POST request and the Cat Monitor menu can show whatever she does.
+            </h4>
+        </li>
+
+
+    </ul>
+
+{% endblock content %}
