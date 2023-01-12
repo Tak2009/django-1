@@ -100,18 +100,19 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 
 # https://help.pythonanywhere.com/pages/UsingMySQL/
+# https://djangostars.com/blog/configuring-django-settings-best-practices/
 
 try:
-    from . import secret_key
-    # print(secret_key.DATABASES['NAME'])
-    # print(secret_key.DATABASES['PASSWORD'])
+    from . import db_live
+    # print(db_live.DATABASES['NAME'])
+    # print(db_live.DATABASES['PASSWORD'])
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': secret_key.DATABASES['NAME'],
-            'USER': secret_key.DATABASES['USER'],
-            'PASSWORD': secret_key.DATABASES['PASSWORD'],
-            'HOST': secret_key.DATABASES['HOST'],
+            'NAME': db_live.DATABASES['NAME'],
+            'USER': db_live.DATABASES['USER'],
+            'PASSWORD': db_live.DATABASES['PASSWORD'],
+            'HOST': db_live.DATABASES['HOST'],
              'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             },
@@ -119,7 +120,12 @@ try:
     }
 
 except:
-    print('Store all the necessary key-value pairs in secret_key.py in the same directory)
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # Password validation
