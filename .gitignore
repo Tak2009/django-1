@@ -3,6 +3,7 @@ __pycache__
 *.sqlite3
 .DS_Store
 github_settings.py
-settings.py
+secret_key.py
 *.pyc
 mysite/ads
+db_live.py
