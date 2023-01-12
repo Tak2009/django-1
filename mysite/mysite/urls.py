@@ -27,6 +27,8 @@ urlpatterns = [
     path('onestop/', include('onestop.urls')),
     path('daisy/', include('daisy.urls')),
     path('admin/', admin.site.urls),
+    # https://learndjango.com/tutorials/django-login-and-logout-tutorial
+    # https://docs.djangoproject.com/en/4.0/topics/auth/default/#module-django.contrib.auth.views
     path('accounts/', include('django.contrib.auth.urls')),
     re_path(r'^oauth/', include('social_django.urls', namespace='social')),
 

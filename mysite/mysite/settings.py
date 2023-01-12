@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'taggit',
     'home.apps.HomeConfig',
     'onestop.apps.OnestopConfig',
-    'ads.apps.AdsConfig',
+    # 'ads.apps.AdsConfig',
     'daisy.apps.DaisyConfig',
 ]
 

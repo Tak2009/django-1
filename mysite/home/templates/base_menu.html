@@ -8,21 +8,33 @@
     </div>
     <!-- https://stackoverflow.com/questions/22047251/django-dynamically-get-view-url-and-check-if-its-the-current-page -->
     <ul class="nav navbar-nav">
-      {% url 'home:all' as home %}
-      <li {% if request.get_full_path == home %}class="active"{% endif %}>
-          <a href="{% url 'home:all' %}">Home</a></li>
-      {% url 'onestop:all' as recipe %}
-      <li {% if request.get_full_path == recipe %}class="active"{% endif %}>
-          <a href="{% url 'onestop:all' %}">Recipes</a></li>
-      {% url 'daisy:all' as daisy %}
-      <li {% if request.get_full_path == daisy %}class="active"{% endif %}>
-          <a href="{% url 'daisy:all' %}">Cat Monitor(WIP)</a></li>
+        {% url 'home:all' as home %}
+        <li {% if request.get_full_path == home %}class="active"{% endif %}>
+            <a href="{% url 'home:all' %}">Home</a>
+        </li>
+        {% url 'onestop:all' as recipe %}
+        <li {% if request.get_full_path == recipe %}class="active"{% endif %}>
+            <a href="{% url 'onestop:all' %}">Recipes</a>
+        </li>
+        {% url 'daisy:all' as daisy %}
+        <li {% if request.get_full_path == daisy %}class="active"{% endif %}>
+            <a href="{% url 'daisy:all' %}">Cat Monitor(WIP)</a>
+        </li>
      </ul>
     <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-        <li>
-        <a href="{% url 'onestop:recipe_create' %}">Create Recipe</a>
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Drop Down
+                <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="{% url 'onestop:recipe_create' %}">Create Recipe</a>
+                </li>
+            </ul>
         </li>
+        <!-- <li>
+        <a href="{% url 'onestop:recipe_create' %}">Create Recipe</a>
+        </li> -->
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                 <img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b>
