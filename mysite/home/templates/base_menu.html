@@ -1,54 +1,53 @@
 {% extends "base_bootstrap.html" %}
 {% block navbar %}
 {% load app_tags %}
-<nav class="navbar navbar-default navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="/">{{ settings.APP_NAME }}</a>
-    </div>
-    <!-- https://stackoverflow.com/questions/22047251/django-dynamically-get-view-url-and-check-if-its-the-current-page -->
-    <ul class="nav navbar-nav">
-        {% url 'home:all' as home %}
-        <li {% if request.get_full_path == home %}class="active"{% endif %}>
-            <a href="{% url 'home:all' %}">Home</a>
-        </li>
-        {% url 'onestop:all' as recipe %}
-        <li {% if request.get_full_path == recipe %}class="active"{% endif %}>
-            <a href="{% url 'onestop:all' %}">Recipes</a>
-        </li>
-        {% url 'daisy:all' as daisy %}
-        <li {% if request.get_full_path == daisy %}class="active"{% endif %}>
-            <a href="{% url 'daisy:all' %}">Cat Monitor(WIP)</a>
-        </li>
-     </ul>
-    <ul class="nav navbar-nav navbar-right">
-        {% if user.is_authenticated %}
-        <li class="dropdown">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Drop Down
-                <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li>
-                    <a href="{% url 'onestop:recipe_create' %}">Create Recipe</a>
-                </li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                <img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="{% url 'logout' %}?next={% url 'onestop:all' %}">Logout</a></li>
-            </ul>
-        </li>
-        {% else %}
-        <li>
-            <a href="{% url 'home:register' %}">Register</a>
-        </li>
-        <li>
-            <a href="{% url 'login' %}?next={% url 'onestop:all' %}">Login</a>
-        </li>
-        {% endif %}
-    </ul>
-  </div>
-</nav>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
+  <!-- <div class="container-fluid"> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">{{ settings.APP_NAME }}</a>
+    <!-- https://knowledge.cpi.ad.jp/tech/navbar/ -->
+    <!-- https://medium-company.com/bootstrap-navbar/ -->
+        <div class="collapse navbar-collapse justify-content navbarNav4">
+            <div class="navbar-nav">
+                {% url 'home:all' as home %}
+                <a class="nav-item nav-link" {% if request.get_full_path == home %}class="active"{% endif %} href="{% url 'home:all' %}">Home</a>
+                {% url 'onestop:all' as recipe %}
+                <a class="nav-item nav-link" {% if request.get_full_path == recipe %}class="active"{% endif %} href="{% url 'onestop:all' %}">Recipes</a>
+                {% url 'daisy:all' as daisy %}
+                <a class="nav-item nav-link" {% if request.get_full_path == daisy %}class="active"{% endif %} href="{% url 'daisy:all' %}">Cat Monitor(WIP)</a>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end navbarNav4">
+            {% if user.is_authenticated %}
+            <div class="navbar-nav dropdown">
+                <a class="nav-item nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create Menu</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'onestop:recipe_create' %}">Create Recipe</a>
+                </div>
+            </div>
+            <div class="navbar-nav dropdown">
+                <a class="nav-item nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b>
+                </a>
+                
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'logout' %}?next={% url 'home:all' %}">Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="navbar-nav dropdown">
+                <a class="nav-item nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </a>
+                
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'home:register' %}">Register</a>
+                    <a class="dropdown-item" href="{% url 'login' %}?next={% url 'home:all' %}">Login</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
 {% endblock %}
