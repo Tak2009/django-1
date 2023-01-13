@@ -58,16 +58,18 @@
 <a href="{% url 'login' %}?next={% url 'onestop:all' %}">Login</a>
 {% endif %}
 </p>
+
 <script>
-function favPost(url, recipe_id) {
-    console.log('Requesting JSON');
-    $.post(url, {},  function(rowz){
-        console.log(url, 'finished');
-        $("#unfavorite_star_"+recipe_id).toggle();
-        $("#favorite_star_"+recipe_id).toggle();
-    }).fail(function(xhr) {
-        alert('Url failed with '+xhr.status+' '+url);
-    });
-}
+  console.log('check3 ' + $j.fn.jquery);
+    function favPost(url, recipe_id) {
+        console.log('Requesting JSON');
+        $j.post(url, {},  function(rowz){
+            console.log(url, 'finished');
+            $("#unfavorite_star_"+recipe_id).toggle();
+            $("#favorite_star_"+recipe_id).toggle();
+        }).fail(function(xhr) {
+            alert('Url failed with '+xhr.status+' '+url);
+        });
+    }
 </script>
 {% endblock %}
