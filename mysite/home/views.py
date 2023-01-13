@@ -1,9 +1,13 @@
 from django.shortcuts import  render, redirect
-from .forms import NewUserForm
-from django.contrib.auth import login
-from django.contrib import messages
 from django.views import View
 from django.conf import settings
+from django.contrib import messages  
+# from .forms import CustomUserCreationForm
+from django.urls import reverse_lazy
+from django.contrib.auth import login
+from home.forms import NewUserForm
+
+
 
 # Create your views here.
 
@@ -22,14 +26,28 @@ class HomeView(View):
         }
         return render(request, 'home/main.html', context)
 
-def register_request(request):
+# def register(request):
+# 	if request.POST == 'POST':
+# 		form = UserCreationForm()
+# 		if form.is_valid():
+# 			form.save()
+# 			messages.success(request, 'Account created successfully')
+# 	else:
+# 		form = UserCreationForm()
+# 		context = {'form':form}
+# 	return render(request, 'home/register.html', context)
+
+def register(request):
+	template_name = "home/register.html"
+	success_url = reverse_lazy('home:all')
 	if request.method == "POST":
 		form = NewUserForm(request.POST)
 		if form.is_valid():
 			user = form.save()
 			login(request, user)
 			messages.success(request, "Registration successful." )
-			return redirect("home:all")
+			return redirect(success_url)
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
-	return render (request=request, template_name="home/register.html", context={"register_form":form})
+	context={"form":form}
+	return render (request, template_name, context)

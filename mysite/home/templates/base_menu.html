@@ -32,9 +32,6 @@
                 </li>
             </ul>
         </li>
-        <!-- <li>
-        <a href="{% url 'onestop:recipe_create' %}">Create Recipe</a>
-        </li> -->
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                 <img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b>
@@ -45,7 +42,10 @@
         </li>
         {% else %}
         <li>
-        <a href="{% url 'login' %}?next={% url 'onestop:all' %}">Login</a>
+            <a href="{% url 'home:register' %}">Register</a>
+        </li>
+        <li>
+            <a href="{% url 'login' %}?next={% url 'onestop:all' %}">Login</a>
         </li>
         {% endif %}
     </ul>
