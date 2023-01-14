@@ -41,7 +41,9 @@
 {% if recipe.tags.all %}
 <p>Tags:
   {% for tag in recipe.tags.all %}
-  <span style="border:1px grey solid; background-color: LightGreen;">{{ tag }}</span>
+  <!-- https://django-taggit.readthedocs.io/en/latest/forms.html
+  https://dev.to/tikam02/how-to-implement-django-search-field-and-tags-keywords-286a -->
+  <span style="border:1px grey solid; background-color: LightGreen;">{{ tag|lower }}</span>
   {% endfor %}
 </p>
 {% endif %}

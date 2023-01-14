@@ -11,6 +11,8 @@ from onestop.forms import CreateForm, NoteForm
 from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.humanize.templatetags.humanize import naturaltime
+from taggit.models import Tag
+from django.views.generic.list import ListView
 
 class RecipeListView(View):
     # model = Ad
@@ -134,6 +136,12 @@ class NoteDeleteView(OwnerDeleteView):
     def get_success_url(self):
         recipe = self.object.recipe
         return reverse('onestop:recipe_detail', args=[recipe.id])
+
+class TagListView(ListView):
+    model = Tag
+    template_name = "onestop/tag_list.html"
+    context_object_name = 'tag_list'
+
 
 # https://stackoverflow.com/questions/16458166/how-to-disable-djangos-csrf-validation
 from django.views.decorators.csrf import csrf_exempt

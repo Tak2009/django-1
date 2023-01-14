@@ -3,19 +3,25 @@
 <h1>Recipes</h1>
 <div style="float:right">
 <!-- https://www.w3schools.com/howto/howto_css_search_button.asp -->
-<form>
-  <input type="text" placeholder="Search.." name="search"
-  {% if search %} value="{{ search }}" {% endif %}
-  >
-  <button type="submit"><i class="fa fa-search"></i></button>
-<a href="{% url 'onestop:all' %}"><i class="fa fa-undo"></i></a>
-</form>
+  <form>
+    <input type="text" placeholder="Search.." name="search" {% if search %} value="{{ search }}" {% endif %}>
+    <button type="submit"><i class="fa fa-search"></i></button>
+    <a href="{% url 'onestop:all' %}"><i class="fa fa-undo"></i></a>
+  </form>
+  <br/>
+  <a href="#" title="filter recipes by favorite (just a DOM manipulation)" id="sort-favarite">
+    <span class="fa-stack">
+      <i class="fa fa-star fa-stack-1x" style="color: orange;"></i>
+      <i class="fa fa-star-o fa-stack-1x"></i>
+    </span>
+  </a>
+  <a href="{% url 'onestop:all' %}" title="undo favorite filter on recipes (HTTP GET)"><i class="fa fa-undo"></i></a>
 </div>
 <p>
 {% if recipe_list %}
-<ul>
+<ul id="registered-recipe-list">
   {% for recipe in recipe_list %}
-    <li>
+    <li style="display: block;" id="{{ recipe.id }}">
         <a href="{% url 'onestop:recipe_detail'  recipe.id %}">{{ recipe.title }}</a>
         {% if recipe.owner == user %}
         (<a href="{% url 'onestop:recipe_update' recipe.id %}">Edit</a> |
@@ -24,7 +30,7 @@
         {% if user.is_authenticated %}
         <!-- Two hrefs with two stacked icons each - one showing and one hidden -->
         <a href="#" onclick=
-            "favPost('{% url 'onestop:recipe_unfavorite' recipe.id %}', {{ recipe.id }} );return false;"
+            "favPost('{% url 'onestop:recipe_unfavorite' recipe.id %}', {{ recipe.id }});return false;"
             {% if recipe.id not in favorites %} style="display: none;" {% endif %}
             id="favorite_star_{{recipe.id}}">
         <span class="fa-stack" style="vertical-align: middle;">
@@ -58,18 +64,73 @@
 <a href="{% url 'login' %}?next={% url 'onestop:all' %}">Login</a>
 {% endif %}
 </p>
+<P>
+  <a href="{% url 'onestop:tag_list' %}">Tag list</a>
+
 
 <script>
-  console.log('check3 ' + $j.fn.jquery);
-    function favPost(url, recipe_id) {
-        console.log('Requesting JSON');
-        $j.post(url, {},  function(rowz){
-            console.log(url, 'finished');
-            $("#unfavorite_star_"+recipe_id).toggle();
-            $("#favorite_star_"+recipe_id).toggle();
-        }).fail(function(xhr) {
-            alert('Url failed with '+xhr.status+' '+url);
-        });
+// //https://notetoself-dy.com/javascript-variable-global-local/
+var favorite_list = ""
+const btn = document.getElementById('sort-favarite');
+
+window.addEventListener('load', () => {
+  console.log('onload!');
+  favorite_list = JSON.parse("{{favorites| escapejs}}")
+})
+
+// //1. to store favosite ids in favorite_list
+// //https://adamj.eu/tech/2020/02/18/safely-including-data-for-javascript-in-a-django-template/
+console.log('check3 ' + $j.fn.jquery);
+function favPost(url, recipe_id) {
+  console.log('Requesting JSON');
+  // 2. manipulate dom first to update favorite_list variable
+  if (url.includes("unfavorite")){
+    const index = favorite_list.indexOf(recipe_id);
+    const x = favorite_list.splice(index, 1);
+    // console.log(favorite_list)
+  } else {
+    favorite_list.push(recipe_id)
+    // console.log(favorite_list)
+  }
+  $j.post(url, {},  function(rowz){
+      console.log(url, 'finished');
+      $("#unfavorite_star_"+recipe_id).toggle();
+      $("#favorite_star_"+recipe_id).toggle();
+  }).fail(function(xhr) {
+      alert('Url failed with '+xhr.status+' '+url);
+  });
+}
+
+btn.addEventListener('click', () => {
+  let list_element = document.getElementById("registered-recipe-list");
+  let length = list_element.childElementCount;
+  console.log('clicked!');
+  // console.log(list_element);
+  // console.log(length);
+  for(let i=0; i<length; i++) {
+    console.log(parseInt(list_element.children[i].id, 10));
+    if (favorite_list.includes(parseInt(list_element.children[i].id, 10))) {
+      console.log('Yes!');
+    } else {
+    console.log('No!');
+    list_element.children[i].style.display = "none"
     }
+  }
+}, false);
+
+// //https://www.buildinsider.net/web/jqueryref/068
+// original
+// console.log('check3 ' + $j.fn.jquery);
+// function favPost(url, recipe_id) {
+//     console.log('Requesting JSON');
+//     $j.post(url, {},  function(rowz){
+//         console.log(url, 'finished');
+//         $("#unfavorite_star_"+recipe_id).toggle();
+//         $("#favorite_star_"+recipe_id).toggle();
+//     }).fail(function(xhr) {
+//         alert('Url failed with '+xhr.status+' '+url);
+//     });
+// }
+
 </script>
 {% endblock %}
