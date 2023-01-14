@@ -1,7 +1,7 @@
 
 // https://docs.djangoproject.com/en/4.1/howto/static-files/ 
 // https://docs.djangoproject.com/en/4.1/ref/templates/builtins/#json-script
-const inner_html = JSON.parse(document.getElementById('favorites_json').textContent);
+const inner_html_favorites = JSON.parse(document.getElementById('favorites-json').textContent);
 
 // //https://notetoself-dy.com/javascript-variable-global-local/
 var favorite_list = ""
@@ -13,7 +13,7 @@ const test = () => {
 
 window.addEventListener('load', () => {
   console.log('onload!');
-  favorite_list = inner_html
+  favorite_list = inner_html_favorites
 })
 
 // //1. to store favosite ids in favorite_list
