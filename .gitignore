@@ -7,3 +7,4 @@ secret_key.py
 *.pyc
 mysite/ads
 db_live.py
+/venv
