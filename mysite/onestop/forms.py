@@ -2,7 +2,14 @@ from django import forms
 from onestop.models import Recipe
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from onestop.humanize import naturalsize
+from taggit.forms import TagField
 
+# https://github.com/jazzband/django-taggit/blob/master/taggit/forms.py
+# https://docs.djangoproject.com/en/4.1/ref/forms/validation/
+# https://stackoverflow.com/questions/24313201/convert-all-charfield-form-field-inputs-to-lowercase-in-django-forms
+class TagCustomField(TagField):
+    def to_python(self, value):
+        return value.lower()
 
 # Create the form class.
 class CreateForm(forms.ModelForm):
@@ -11,6 +18,9 @@ class CreateForm(forms.ModelForm):
 
     picture = forms.FileField(required=False, label='File to Upload <= '+max_upload_limit_text)
     upload_field_name = 'picture'
+
+    # override django-taggit tags so that they are always lowercase
+    tags = TagCustomField()
 
     class Meta:
         model = Recipe
@@ -42,7 +52,7 @@ class CreateForm(forms.ModelForm):
             self.save_m2m()
             ##################
             instance.save()
-
+                
         return instance
 
 # https://docs.djangoproject.com/en/3.0/topics/http/file-uploads/
@@ -52,6 +62,3 @@ class CreateForm(forms.ModelForm):
 
 class NoteForm(forms.Form):
     note = forms.CharField(required=True, max_length=500, min_length=3, strip=True)
-
-
-
