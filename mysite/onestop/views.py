@@ -107,7 +107,10 @@ class RecipeUpdateView(LoginRequiredMixin, View):
 
         recipe = form.save(commit=False)
         recipe.save()
-
+        # https://www.dj4e.com/assn/dj4e_ads4.md?PHPSESSID=bd08ca99d78434177e27b51978bafaf9
+        # https://django-taggit.readthedocs.io/en/latest/forms.html#commit-false
+        form.save_m2m()    # Add this
+  
         return redirect(self.success_url)
 
 class RecipeDeleteView(OwnerDeleteView):
@@ -141,7 +144,6 @@ class TagListView(ListView):
     model = Tag
     template_name = "onestop/tag_list.html"
     context_object_name = 'tag_list'
-
 
 # https://stackoverflow.com/questions/16458166/how-to-disable-djangos-csrf-validation
 from django.views.decorators.csrf import csrf_exempt
