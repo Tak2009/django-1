@@ -158,6 +158,16 @@ class RecipeByTagListView(ListView):
         context = {'recipes': recipes, 'tag_name' : name }
         return render(request, self.template_name, context)
 
+def remove_all_tags_without_objects(request):
+    success_url = reverse_lazy('onestop:tag_list')
+    for tag in Tag.objects.all():
+        if tag.taggit_taggeditem_items.count() == 0:
+            print('Removing: {}'.format(tag))
+            tag.delete()
+        else:
+            print('Keeping: {}'.format(tag))
+    return redirect(success_url) 
+
 # https://stackoverflow.com/questions/16458166/how-to-disable-djangos-csrf-validation
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator

@@ -43,7 +43,7 @@
   {% for tag in recipe.tags.all %}
   <!-- https://django-taggit.readthedocs.io/en/latest/forms.html
   https://dev.to/tikam02/how-to-implement-django-search-field-and-tags-keywords-286a -->
-  <span style="border:1px grey solid; background-color: LightGreen;">{{ tag|lower }}</span>
+  <span style="border:1px grey solid; background-color: rgb(236, 147, 31); display: inline-block; border-radius: 5px; font-size: 90%; padding: 1px; color: rgb(252, 252, 244);">{{ tag }}</span>
   {% endfor %}
 </p>
 {% endif %}
