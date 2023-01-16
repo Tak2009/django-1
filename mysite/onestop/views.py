@@ -144,6 +144,19 @@ class TagListView(ListView):
     model = Tag
     template_name = "onestop/tag_list.html"
     context_object_name = 'tag_list'
+  
+class RecipeByTagListView(ListView):
+    # https://django-taggit.readthedocs.io/en/latest/api.html#filtering
+    model = Tag
+    template_name = "onestop/recipe_by_tag_list.html"
+    context_object_name = 'recipes_by_tag_list'
+
+    def get(self, request, name) :
+        x = Tag.objects.get(name=name)
+        print(x)
+        recipes = Recipe.objects.filter(tags__name__in=[name]).order_by('-updated_at')
+        context = {'recipes': recipes, 'tag_name' : name }
+        return render(request, self.template_name, context)
 
 # https://stackoverflow.com/questions/16458166/how-to-disable-djangos-csrf-validation
 from django.views.decorators.csrf import csrf_exempt

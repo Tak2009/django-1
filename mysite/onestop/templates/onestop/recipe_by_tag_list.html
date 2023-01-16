@@ -1,14 +1,14 @@
 {% extends "base_menu.html" %}
 {% block content %}
-<h1>Tags</h1>
+<h1>Recipes with Tag: "{{ tag_name }}"</h1>
 <ul>
     <!-- Iterate over object_list -->
-    {% for tag in tag_list %}
+    {% for recipe in recipes %}
     <!-- Display Objects -->
-    <li style="display: block;"><a href="{% url 'onestop:recipe_by_tag_list' tag.name %}">{{ tag.name }}</a></li>
+    <li style="display: block;"><a href="{% url 'onestop:recipe_detail' recipe.id %}">{{ recipe.title }}</a></li>
     <!-- If object_list is empty  -->
     {% empty %}
-    <ol>No tags yet.</ol>
+    <li>No recipe yet.</li>
     {% endfor %}
 </ul>
 {% endblock %}

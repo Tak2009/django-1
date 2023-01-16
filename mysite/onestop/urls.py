@@ -19,6 +19,8 @@ urlpatterns = [
     path('recipe/<int:pk>/favorite', views.AddFavoView.as_view(), name='recipe_favorite'),
     path('recipe/<int:pk>/unfavorite', views.DeleteFavoView.as_view(), name='recipe_unfavorite'),
     path('recipe/tags', views.TagListView.as_view(), name='tag_list'),
+    # https://django-taggit.readthedocs.io/en/latest/api.html
+    path('recipe/tags/<str:name>/recipes', views.RecipeByTagListView.as_view(), name='recipe_by_tag_list'),
 ]
 
 #Use reverse_lazy in urls.py to delay looking up the view until all the paths are defined

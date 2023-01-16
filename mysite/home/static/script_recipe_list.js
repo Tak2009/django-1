@@ -43,8 +43,6 @@ btn.addEventListener('click', () => {
   let list_element = document.getElementById("registered-recipe-list");
   let length = list_element.childElementCount;
   console.log('clicked!');
-  // console.log(list_element);
-  // console.log(length);
   for(let i=0; i<length; i++) {
     console.log(parseInt(list_element.children[i].id, 10));
     if (favorite_list.includes(parseInt(list_element.children[i].id, 10))) {
@@ -56,16 +54,3 @@ btn.addEventListener('click', () => {
   }
 }, false);
 
-// //https://www.buildinsider.net/web/jqueryref/068
-// original
-// console.log('check3 ' + $j.fn.jquery);
-// function favPost(url, recipe_id) {
-//     console.log('Requesting JSON');
-//     $j.post(url, {},  function(rowz){
-//         console.log(url, 'finished');
-//         $("#unfavorite_star_"+recipe_id).toggle();
-//         $("#favorite_star_"+recipe_id).toggle();
-//     }).fail(function(xhr) {
-//         alert('Url failed with '+xhr.status+' '+url);
-//     });
-// }

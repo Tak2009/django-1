@@ -50,6 +50,11 @@
 <p>
     <a href="{{ recipe.website }}" target="_blank">Website</a>
 </p>
+{% if not user.is_authenticated %}
+<p>
+  <a href="{% url 'onestop:all' %}">All Recipes</a>
+</p>
+{% endif %}
 {% if user.is_authenticated %}
 <br clear="all"/>
 <p>

@@ -4,7 +4,7 @@
 <div style="float:right">
 <!-- https://www.w3schools.com/howto/howto_css_search_button.asp -->
   <form>
-    <input type="text" placeholder="Search.." name="search" {% if search %} value="{{ search }}" {% endif %}>
+    <input type="text" placeholder="Simple Title Search.." name="search" {% if search %} value="{{ search }}" {% endif %}>
     <button type="submit"><i class="fa fa-search"></i></button>
     <a href="{% url 'onestop:all' %}"><i class="fa fa-undo"></i></a>
   </form>
