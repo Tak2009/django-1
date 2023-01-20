@@ -10,29 +10,43 @@
     The source code for this Django project is <a href="https://github.com/Tak2009/django-1" target="_blank">here</a>
     </h3>
     <br/>
+    <h2>&#128512; Menu Details &#128077 (&#x2b07; slide if clicked &#x2b07;)</h2>
     <br/>
-    <ul class="nav navbar-nav">
-        <li>
-            <h4>
-                <strong>Recipes:</strong> Every year, I need to spend too much time to google specific recipes during the festive season.
-                I sometimes can get exactly the same reciepes I referred in the preveous year but sometimes NOT.
-                I always try keeping the URLs with high rated reviews for the next year but my "recordkeeping system" does not properly functioning.
-                To prevent from spending too much time to recover my important recipe URLs every year,
-                the "Recipes" menu will be my centralized recipe book.
-            </h4>
-        </li>
-        <br/>
-        <li>
-            <h4>
-                <strong>Cat Monitor:</strong> We used to have mice issues in our garage. Thus I built an auto motion detection night vision device with
-                <a href="https://github.com/Tak2009/raspi-2-motion-detect-sensor-oauth2-tk" target="_blank">Raspberry Pi and Python</a> to detect mice during night time. Now we have a cat and all the issues are gone!!
-                Thus, I have decided to use the device not only to monitor the cat but also keep the photo records as her own "blog posts".
-                She is a lovely cat but we do not know what she is doing during night time. Once a motion is detected by the device,
-                the device send the pic (as a hard evidence!) to the web server via HTTP POST request and the Cat Monitor menu can show whatever she does, her secret night life!!
-            </h4>
-        </li>
-
-
-    </ul>
+   <!-- スライダー -->
+   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <h4>
+            <strong>Recipes:</strong> Every year, I need to spend too much time to google specific recipes during the festive season.
+            I sometimes can get exactly the same reciepes I referred in the preveous year but sometimes NOT.
+            I always try keeping the URLs with high rated reviews for the next year but my "recordkeeping system" does not properly functioning.
+            To prevent from spending too much time to recover my important recipe URLs every year,
+            the "Recipes" menu will be my centralized recipe book.
+        </h4>
+      </div>
+      <div class="carousel-item">
+        <h4>
+            <strong>Cat Monitor:</strong> We used to have mice issues in our garage. Thus I built an auto motion detection night vision device with
+            <a href="https://github.com/Tak2009/raspi-2-motion-detect-sensor-oauth2-tk" target="_blank">Raspberry Pi and Python</a> to detect mice during night time. Now we have a cat and all the issues are gone!!
+            Thus, I have decided to use the device not only to monitor the cat but also keep the photo records as her own "blog posts".
+            She is a lovely cat but we do not know what she is doing during night time. Once a motion is detected by the device,
+            the device send the pic (as a hard evidence!) to the web server via HTTP POST request and the Cat Monitor menu can show whatever she does, her secret night life!!
+        </h4>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
 
 {% endblock content %}
