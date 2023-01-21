@@ -10,7 +10,7 @@ const renderLang = (langs) => {
     for (lang in langs) {
         const div = document.createElement("div")
         div.classList.add("progress")
-        div.style.backgroundColor = '#b6bfb6'
+        div.style.backgroundColor = '#f59842'
         div.style.height= '30px'
 
         console.log(lang_index, lang)

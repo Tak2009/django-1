@@ -12,13 +12,23 @@
         <div class="collapse navbar-collapse justify-content navbarNav4">
             <div class="navbar-nav">
                 {% url 'home:all' as home %}
-                <a class="nav-item nav-link" {% if request.get_full_path == home %}class="active"{% endif %} href="{% url 'home:all' %}">Home</a>
+                <a class="nav-item nav-link" {% if request.get_full_path == home %}class="active"{% endif %} href="{% url 'home:all' %}">
+                    Home
+                </a>
                 {% url 'onestop:all' as recipe %}
-                <a class="nav-item nav-link" {% if request.get_full_path == recipe %}class="active"{% endif %} href="{% url 'onestop:all' %}">Recipes</a>
+                <a class="nav-item nav-link" {% if request.get_full_path == recipe %}class="active"{% endif %} href="{% url 'onestop:all' %}">
+                    Recipes
+                </a>
                 {% url 'daisy:all' as daisy %}
-                <a class="nav-item nav-link" {% if request.get_full_path == daisy %}class="active"{% endif %} href="{% url 'daisy:all' %}">Cat Monitor(WIP)</a>
+                <a class="nav-item nav-link" {% if request.get_full_path == daisy %}class="active"{% endif %} href="{% url 'daisy:all' %}">
+                    Cat Monitor(WIP)
+                </a>
                 {% url 'home:about' as about %}
-                <a class="nav-item nav-link" {% if request.get_full_path == about %}class="active"{% endif %} href="{% url 'home:tech' %}">Tech Stat</a>
+                <div style="display: inline-block;">
+                    <a class="nav-item nav-link" {% if request.get_full_path == about %}class="active"{% endif %} href="{% url 'home:tech' %}">Tech Info
+                        <img src="../static/github-mark-white.png" width="7%" height="7%" alt="...">
+                    </a>
+                </div>
             </div>
         </div>
         <div class="collapse navbar-collapse justify-content-end navbarNav4">
