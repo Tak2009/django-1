@@ -1,9 +1,7 @@
 {% extends "base_menu.html" %}
 {% block content %}
     <h1>Welcome to {{ settings.APP_NAME }}</h1>
-    <h3>
-    Our Cat monitor function is still under construction. Will be connected with our real-time Raspi Monitor device in the near future
-    </h3>
+    <h3>Our Cat monitor function is still under construction. Will be connected with our real-time Raspi Monitor device in the near future</h3>
     <div class="container-fluid">
         <div class="row">
             <div class="col-6">
@@ -14,5 +12,38 @@
             </div>
         </div>
     </div>
+
+    <!-- カード -->
+<div class="container py-4" id="cats">
+    <h2>Cat Moves</h2>
+    <p>Photos will be available shortly.Photos will be available shortly.Photos will be available shortly.</p>
+    <div class="card-deck">
+        <div class="card">
+          <img src="../static/img/sample2.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Work1</h5>
+            <p class="card-text">Photos will be available shortly.Photos will be available shortly.Photos will be available shortly.</p>
+            <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../static/img/sample2.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Work2</h5>
+            <p class="card-text">Photos will be available shortly.Photos will be available shortly.Photos will be available shortly.</p>
+            <p class="card-text"><small class="text-muted">Last updated 2 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../static/img/sample2.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Work3</h5>
+            <p class="card-text">Photos will be available shortly.Photos will be available shortly.Photos will be available shortly.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+    </div>
+</div>
+
 
 {% endblock content %}
