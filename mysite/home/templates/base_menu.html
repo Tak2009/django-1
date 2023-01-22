@@ -21,11 +21,17 @@
                 </a>
                 {% url 'daisy:all' as daisy %}
                 <a class="nav-item nav-link" {% if request.get_full_path == daisy %}class="active"{% endif %} href="{% url 'daisy:all' %}">
-                    Cat Monitor(WIP)
+                    Cat Monitor
                 </a>
-                {% url 'home:about' as about %}
+                {% url 'plant:all' as plant %}
                 <div style="display: inline-block;">
-                    <a class="nav-item nav-link" {% if request.get_full_path == about %}class="active"{% endif %} href="{% url 'home:tech' %}">Tech Info
+                    <a class="nav-item nav-link" {% if request.get_full_path == plant %}class="active"{% endif %} href="{% url 'plant:all' %}">
+                        Watering Plant
+                    </a>
+                </div>
+                {% url 'home:tech' as tech %}
+                <div style="display: inline-block;">
+                    <a class="nav-item nav-link" {% if request.get_full_path == tech %}class="active"{% endif %} href="{% url 'home:tech' %}">Tech Info
                         <img src="../static/github-mark-white.png" width="7%" height="7%" alt="...">
                     </a>
                 </div>

@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'onestop.apps.OnestopConfig',
     # 'ads.apps.AdsConfig',
     'daisy.apps.DaisyConfig',
+    'plant.apps.PlantConfig',
 ]
 
 # When we get to crispy forms :)

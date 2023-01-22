@@ -1,0 +1,57 @@
+<!-- https://github.com/mpetroff/pannellum -->
+<!-- https://miimo.tech/code/pannellum360vr/ -->
+{% extends "base_menu.html" %}
+{% block content %}
+
+<style>
+/* パノラマビュー部分 */
+#panorama {
+  width: 100%;
+  height: 70vw;
+  max-height: 600px;
+}
+/* サムネイル部分 */
+.panorama-navs {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  margin-left: -3px;
+  margin-right: -3px;
+}
+.panorama-navs li {
+  width: calc(100% / 7);
+  padding: 3px 5px;
+}
+.panorama-navs li > a {
+  display: inline-block;
+  background-color: #fff;
+}
+.panorama-navs li > a > img {
+  width: 100%;
+  height: auto;
+}
+.panorama-navs li > a:hover img {
+  opacity: 0.65;
+  cursor: pointer;
+}
+/* スマホ */
+@media(max-width: 599px) {
+  /* サムネイル数を4つ並びに */
+	.panorama-navs li {
+		width: calc(100% / 4);
+	}
+}
+</style>
+<h1>Plant Monitor</h1>
+<h3>Our Plant Monitor function is still under construction. Will be connected with our Raspi Automated Watering Plant System in the near future</h3>
+<div id="panorama"></div>
+    <ul class="panorama-navs">
+        <li><a data-item-url="../static/img/360-view-trees.jpeg"><img src="../static/img/360-view-trees.jpeg" alt=""></a></li>
+        <li><a data-item-url="../static/img/360-view-shore.jpeg"><img src="../static/img/360-view-shore.jpeg" alt=""></a></li>
+    </ul>
+
+{% load static %}
+<script src="{% static 'script_plant_list.js' %}" defer></script>
+
+{% endblock content %}

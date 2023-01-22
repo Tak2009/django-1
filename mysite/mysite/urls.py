@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('onestop/', include('onestop.urls')),
     path('daisy/', include('daisy.urls')),
+    path('plant/', include('plant.urls')),
     path('admin/', admin.site.urls),
     # https://learndjango.com/tutorials/django-login-and-logout-tutorial
     # https://docs.djangoproject.com/en/4.0/topics/auth/default/#module-django.contrib.auth.views
