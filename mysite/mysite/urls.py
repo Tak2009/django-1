@@ -20,6 +20,7 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.views.static import serve
 from django.views.generic import TemplateView
+from daisy import apis
 
 urlpatterns = [
     # path('', include('ads.urls')),
@@ -32,6 +33,9 @@ urlpatterns = [
     # https://docs.djangoproject.com/en/4.0/topics/auth/default/#module-django.contrib.auth.views
     path('accounts/', include('django.contrib.auth.urls')),
     re_path(r'^oauth/', include('social_django.urls', namespace='social')),
+    # https://www.sejuku.net/blog/29189: https://stackoverflow.com/questions/70319606/importerror-cannot-import-name-url-from-django-conf-urls-after-upgrading-to
+    # url(r'^api/', include(apis.router.urls)),
+    re_path(r'^api/', include(apis.router.urls)),
 
 ]
 

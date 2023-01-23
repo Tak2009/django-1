@@ -43,11 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-
+    'rest_framework', 
+    
     # Extensions
     'django_extensions',
     'crispy_forms',
-    'rest_framework',
     'social_django',
     'taggit',
     'home.apps.HomeConfig',
