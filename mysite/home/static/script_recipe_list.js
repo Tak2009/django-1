@@ -18,7 +18,8 @@ window.addEventListener('load', () => {
 
 // //1. to store favosite ids in favorite_list
 // //https://adamj.eu/tech/2020/02/18/safely-including-data-for-javascript-in-a-django-template/
-console.log('check3 ' + $j.fn.jquery);
+console.log('check4 ' + $j.fn.jquery);
+console.log('check5 ' + $.fn.jquery);
 function favPost(url, recipe_id) {
   console.log('Requesting JSON');
   // 2. manipulate dom first to update favorite_list variable

@@ -10,21 +10,15 @@
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous"> -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
 
 <!-- ### for $.post in recipe_list.html ###-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
-
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" crossorigin="anonymous"></script>
 <script>
-    // 1jQuery 3.3.1に対してエイリアスを設定
+    // 1. ajax.googleapis.com 3.3.1に対してエイリアスを設定: https://www.buildinsider.net/web/jqueryref/068; https://qiita.com/mijabi/items/c68d27bc2ea5642675af
     var $j = jQuery.noConflict(true);
-    
 </script>
-<!-- #### for $j.post in recipe_list.html #### -->
+<!--  -->
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
@@ -34,11 +28,10 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/v4-shims.css">
 
-<!-- Pannellum -->
-<!-- https://pannellum.org/documentation/examples/simple-example/ -->
+<!-- Pannellum: https://pannellum.org/documentation/examples/simple-example/ -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
-<!-- Pannellum -->
+<!--  -->
 
 {% block head %} {% endblock %}
 
@@ -61,13 +54,6 @@
 </div>
 {% block footer %} {% endblock %}
 
-<script defer>
-    // https://www.buildinsider.net/web/jqueryref/068
-    // 2jQueryのバージョンを確認
-    console.log('check1 ' + $j.fn.jquery); // 1.21.1
-    console.log('check2 ' + $.fn.jquery); // 結果：3.3.1
-    console.log('check4 ' + jQuery.fn.jquery); // ???
-</script>
 </body>
 
 </html>
