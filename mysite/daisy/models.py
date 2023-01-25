@@ -9,11 +9,8 @@ class Pic(models.Model) :
             max_length=200,
             null=True,
     )
-
     # Picture
-    picture = models.BinaryField(null=True, blank=True, editable=True)
-    content_type = models.CharField(max_length=256, null=True, blank=True,
-                                    help_text='The MIMEType of the file')
+    pic = models.ImageField(upload_to='', null=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -173,6 +173,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# 画像を保存する先の指定
+MEDIA＿ROOT = os.path.join(BASE_DIR, 'media')
+# 画像をdjango側で読み込むための設定
+MEDIA_URL = '/media/'
+
 # Add the settings below
 
 REST_FRAMEWORK = {
