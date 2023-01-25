@@ -9,3 +9,4 @@ mysite/ads
 db_live.py
 db_local.py
 /venv
+media/*
