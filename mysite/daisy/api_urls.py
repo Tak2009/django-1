@@ -12,6 +12,11 @@ from rest_framework import routers
 
 # exe pics func in apis.py
 urlpatterns = [
-    path('pics/', pics),
-    path('pics/<int:id>/', pic_detail)
+    ### class APIView based ###
+    path('pics/', PicAPIView.as_view()),
+    path('pics/<int:id>/', PicDetailAPIView.as_view()),
+    ### function based ###
+    # path('pics/', pics),
+    # path('pics/<int:id>/', pic_detail),
+
 ]
