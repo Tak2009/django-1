@@ -20,6 +20,7 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.views.static import serve
 from django.views.generic import TemplateView
+from daisy.apis import LoginView, LogoutView
 
 urlpatterns = [
     # path('', include('ads.urls')),
@@ -27,6 +28,9 @@ urlpatterns = [
     path('onestop/', include('onestop.urls')),
     path('daisy/', include('daisy.urls')),
     path('api/v1/', include('daisy.api_urls')),
+    # path('api/v1/auth/', include('rest_framework.urls')), # https://youtu.be/ekhUhignYTU?list=PL1WVjBsN-_NJ4urkLt7iVDocVu_ZQgVzF&t=863
+    path('api/v1/auth/login/', LoginView.as_view()),
+    path('api/v1/auth/logout/', LogoutView.as_view()),
     path('plant/', include('plant.urls')),
     path('admin/', admin.site.urls),
     # https://learndjango.com/tutorials/django-login-and-logout-tutorial
