@@ -18,7 +18,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
 from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
 
-# ### class ModelViewSet (this is equal to class GenericAPIView below) ###
+# ### class ModelViewSet ###
 class PicViewSet(viewsets.ModelViewSet):
     serializer_class = PicSerializer
     queryset = Pic.objects.all()
@@ -33,49 +33,49 @@ class PicViewSet(viewsets.ModelViewSet):
         serialized = PicSerializer(data=request.data)
         if serialized.is_valid():
             serialized.save()
-            return Response(serialized.data, status=200)
+            return Response(serialized.data)
         else:
-            return Response(serialized.errors, status=400)
+            return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 ### class GenericAPIView ###
-# class PicListView(generics.GenericAPIView, 
-#                     mixins.ListModelMixin,
-#                     mixins.CreateModelMixin, 
-#                     mixins.RetrieveModelMixin,
-#                     mixins.UpdateModelMixin,
-#                     mixins.DestroyModelMixin,
-#                     ):
+class PicListView(generics.GenericAPIView, 
+                    mixins.ListModelMixin,
+                    mixins.CreateModelMixin, 
+                    mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin,
+                    ):
 
-#     serializer_class = PicSerializer
-#     queryset = Pic.objects.all()
-#     lookup_field = 'id'
-#     # https://youtu.be/ekhUhignYTU?list=PL1WVjBsN-_NJ4urkLt7iVDocVu_ZQgVzF&t=863
-#     authentication_classes = [TokenAuthentication, SessionAuthentication, BasicAuthentication]
-#     permission_classes = [IsAuthenticated, IsAdminUser]
+    serializer_class = PicSerializer
+    queryset = Pic.objects.all()
+    lookup_field = 'id'
+    # https://youtu.be/ekhUhignYTU?list=PL1WVjBsN-_NJ4urkLt7iVDocVu_ZQgVzF&t=863
+    authentication_classes = [TokenAuthentication, SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
-#     def get(self, request, id=None):
-#         if id:
-#             return self.retrieve(request)
-#         else:
-#             return self.list(request)
+    def get(self, request, id=None):
+        if id:
+            return self.retrieve(request)
+        else:
+            return self.list(request)
         
-#     def post(self, request):
-#         return self.create(request)
+    # def post(self, request):
+    #     return self.create(request)
 
-#     # overriding the one defined in CreateModelMixin
-#     def perform_create(self, serializer):
-#         serializer.save(created_by=self.request.user)
+    # # overriding the one defined in CreateModelMixin
+    # def perform_create(self, serializer):
+    #     serializer.save(created_by=self.request.user)
 
-#     def put(self, request, id=None):
-#         return self.update(request, id)
+    # def put(self, request, id=None):
+    #     return self.update(request, id)
 
-#     # overriding the one defined in UpdateModelMixin
-#     def perform_update(self, serializer):
-#         serializer.save(created_by=self.request.user)
+    # # overriding the one defined in UpdateModelMixin
+    # def perform_update(self, serializer):
+    #     serializer.save(created_by=self.request.user)
     
-#     def delete(self, request, id=None):
-#         return self.destroy(request, id)
+    # def delete(self, request, id=None):
+    #     return self.destroy(request, id)
 
 ### class APIView based ###
 # class PicAPIView(APIView):
@@ -158,6 +158,7 @@ class PicViewSet(viewsets.ModelViewSet):
 
 
 class LoginView(APIView):
+
     def post(self, request):
         serialized = LoginSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
