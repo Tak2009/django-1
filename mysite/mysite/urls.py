@@ -42,10 +42,10 @@ urlpatterns = [
 # Serve the static HTML
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 urlpatterns += [
-    re_path(r'^site/(?P<path>.*)$', serve,
-        {'document_root': os.path.join(BASE_DIR, 'site'),
+    re_path(r'^apps/(?P<path>.*)$', serve,
+        {'document_root': os.path.join(BASE_DIR, '../'),
          'show_indexes': True},
-        name='site_path'
+        name='index_path'
         ),
 ]
 

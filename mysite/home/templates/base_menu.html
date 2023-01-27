@@ -26,7 +26,7 @@
                 {% url 'plant:all' as plant %}
                 <div style="display: inline-block;">
                     <a class="nav-item nav-link" {% if request.get_full_path == plant %}class="active"{% endif %} href="{% url 'plant:all' %}">
-                        Watering Plant
+                        Plant Watering
                     </a>
                 </div>
                 {% url 'home:tech' as tech %}
