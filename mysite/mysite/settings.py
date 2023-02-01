@@ -204,6 +204,7 @@ CORS_ALLOW_METHODS = [
     "POST",
 ]
 
+CORS_ALLOW_CREDENTIALS: True
 
 # Configure the social login
 ##### Line 190 and 73 should be uncommented then from 180 to 185
