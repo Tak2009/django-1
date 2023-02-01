@@ -28,6 +28,12 @@ const renderLang = (langs) => {
 
 API.getLang(django_1_language).then(data => renderLang(data)).catch(console.log).finally(console.log("done"));;
 
+API.postLogin(login, {
+    "username" : "tak_superman_2023",
+    "password": "amsuper07112023"
+    }
+    ).then(data => console.log(data)).catch(console.log).finally(console.log("done"));;
+
 // API.getLang(django_1_language)
 // // 成功した場合は取得したリソースのテキストを出力
 // .then(resp) => {

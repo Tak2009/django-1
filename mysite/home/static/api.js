@@ -3,6 +3,7 @@
 // //Github: "https://api.github.com/users/Tak2009/repos"
 
 const django_1_language = "https://api.github.com/repos/Tak2009/django-1/languages";
+const login = "https://tak2009.pythonanywhere.com/api/v1/auth/login/";
 
 const getLang = async (url) => {
     const response = await fetch(url); // Response オブジェクトを生成する
@@ -14,4 +15,22 @@ const getLang = async (url) => {
     }
   }
 
-API = {getLang};
+  const postLogin = async (url, data = {})  => {
+    // Default options are marked with *
+    const response = await fetch(url, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'include', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data) // body data type must match "Content-Type" header
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+
+API = {getLang, postLogin};
