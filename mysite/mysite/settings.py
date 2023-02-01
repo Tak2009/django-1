@@ -177,7 +177,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # 画像を保存する先の指定
-MEDIA＿ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 画像をdjango側で読み込むための設定
 MEDIA_URL = '/media/'
 
@@ -204,7 +204,7 @@ CORS_ALLOW_METHODS = [
     "POST",
 ]
 
-CORS_ALLOW_CREDENTIALS: True
+CORS_ALLOW_CREDENTIALS = True
 
 # Configure the social login
 ##### Line 190 and 73 should be uncommented then from 180 to 185
