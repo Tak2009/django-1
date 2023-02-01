@@ -192,8 +192,7 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "https://tak2009.pythonanywhere.com",
-    "http://localhost:8080",
-    "http://127.0.0.1:9000",
+    "http://127.0.0.1:8000",
 ]
 
 CORS_ALLOW_METHODS = [
