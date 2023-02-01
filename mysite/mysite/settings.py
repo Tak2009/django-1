@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'rest_framework', 
     'rest_framework.authtoken', # https://youtu.be/ekhUhignYTU?list=PL1WVjBsN-_NJ4urkLt7iVDocVu_ZQgVzF&t=783
-    
+    'corsheaders', # http://www.srikanthtechnologies.com/blog/python/enable_cors_for_django.aspx, https://github.com/adamchainz/django-cors-headers
+
     # Extensions
     'django_extensions',
     'crispy_forms',
@@ -65,6 +66,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'  # Add
 TAGGIT_CASE_INSENSITIVE = True
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -187,6 +189,18 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     )
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "https://tak2009.pythonanywhere.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000",
+]
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+]
+
 
 # Configure the social login
 ##### Line 190 and 73 should be uncommented then from 180 to 185
