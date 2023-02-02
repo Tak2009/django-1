@@ -26,7 +26,8 @@ class PicViewSet(viewsets.ModelViewSet):
     # https://youtu.be/ekhUhignYTU?list=PL1WVjBsN-_NJ4urkLt7iVDocVu_ZQgVzF&t=863
     authentication_classes = [TokenAuthentication, SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated, IsAdminUser]
-    parser_classes = (JSONParser, FormParser, MultiPartParser)
+    # https://www.django-rest-framework.org/api-guide/parsers/
+    parser_classes = [JSONParser, FormParser, MultiPartParser]
 
     @action(detail=True, methods=['POST'])
     def upload(self, request):
