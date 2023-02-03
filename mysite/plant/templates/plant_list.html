@@ -1,8 +1,8 @@
 <!-- https://github.com/mpetroff/pannellum -->
 <!-- https://miimo.tech/code/pannellum360vr/ -->
 {% extends "base_menu.html" %}
-{% block content %}
 
+{% block head %}
 <style>
 /* パノラマビュー部分 */
 #panorama {
@@ -43,6 +43,9 @@
 	}
 }
 </style>
+{% endblock %}
+
+{% block content %}
 <h1>Plant Monitor</h1>
 <h3>
     Our Plant Monitor function is still under construction. It will be connected with our Raspi Automated Watering Plant System in the near future
@@ -57,4 +60,4 @@
 {% load static %}
 <script src="{% static 'script_plant_list.js' %}" defer></script>
 
-{% endblock content %}
+{% endblock %}

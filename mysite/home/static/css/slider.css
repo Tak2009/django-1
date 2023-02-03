@@ -3,7 +3,7 @@
     display: block;
     background:#fff;
     padding:20px;
-    font-size: 150%
+    font-size: 130%
 }
 
 /*日付*/
@@ -12,7 +12,7 @@
     font-size:0.8rem;
     margin-right:10px;
     color:#777;
-    font-size: 100%;
+    font-size: 90%;
 }
 
 /*768px以下の見た目 ※1行のままにしたい場合は不要　*/

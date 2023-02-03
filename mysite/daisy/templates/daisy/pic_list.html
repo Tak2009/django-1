@@ -1,0 +1,81 @@
+{% extends "base_menu.html" %}
+{% load humanize %} <!-- https://docs.djangoproject.com/en/3.0/ref/contrib/humanize -->
+{% block content %}
+
+{% block head %} 
+<!-- slider: https://coco-factory.jp/ugokuweb/move01/9-4-1/ -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/slider.css' %}">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+<!-- slider: -->
+{% endblock %}
+
+<h1>Cat Monitor</h1>
+<h3>Let's see what she does everyday while she is out of our sight....</h3>
+<!-- <h3>Our Cat monitor function is still under construction. It will be connected with our real-time Raspi Monitor device in the near future</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <iframe src="https://giphy.com/embed/l2JJDdD7cv4xdGGis" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cat-cats-shurly-l2JJDdD7cv4xdGGis">via GIPHY</a></p>
+        </div>
+        <div class="col-6">
+            <iframe src="https://giphy.com/embed/P93KMK1pNGWrHmp4jV" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/Studycat-cat-crane-studycat-P93KMK1pNGWrHmp4jV">via GIPHY</a></p>
+        </div>
+    </div>
+</div> -->
+<br/>
+<h4>1. The Flash - New Cat Moves: A Motion Deteced the Evidence Pic Is Under Review Before Published!</h4>
+<h5>&#x26a1; Latest: <a href="{% url 'daisy:pic_detail' flash_list.0.id %}">{{ flash_list.0.title }} ({{ flash_list.0.created_at|naturaltime }})</a> &#x26a1;</h5>
+<ul class="slider">
+    {% for pic in flash_list %}
+    <li><a href="{% url 'daisy:pic_detail' pic.id %}"><span>{{ pic.created_at }}</span>&#x1f195; {{ pic.title }} &#x1f4f8;</a></li>
+    {% endfor %}
+</ul>
+<h4>2. Updates - Hard Evidece Added: Evidence Pics Added to the Records Below.</h4>
+<h5>&#x26a1; Latest: <a href="{% url 'daisy:pic_detail' update_list.0.id %}">{{ update_list.0.title }} ({{ update_list.0.updated_at|naturaltime }})</a> &#x26a1;</h5>
+<ul class="slider">
+    {% for pic in update_list %}
+    <li><a href="{% url 'daisy:pic_detail' pic.id %}"><span>{{ pic.updated_at }}</span>&#x1f575; {{ pic.title }} &#x26a0;</a></li>
+    {% endfor %}
+</ul>
+
+<!-- カード -->
+<h4>3. Cat Moves</h4>
+<div class="container py-4" id="cats">
+    <p>3 Most Recent Moves With Evidence</p>
+    <div class="card-deck">
+        <div class="card">
+            <img src="/media/{{ update_list.0.pic }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'daisy:pic_detail' update_list.0.id %}">MOVE 1</a></h5>
+                <p class="card-text">{{ update_list.0.title }}</p>
+                <p class="card-text"><small class="text-muted">{{ update_list.0.updated_at|naturaltime }}</small></p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/media/{{ update_list.1.pic }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'daisy:pic_detail' update_list.1.id %}">MOVE 2</a></h5>
+                <p class="card-text">{{ update_list.1.title }}</p>
+                <p class="card-text"><small class="text-muted">{{ update_list.1.updated_at|naturaltime }}</small></p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/media/{{ update_list.2.pic }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'daisy:pic_detail' update_list.2.id %}">MOVE 3</a></h5>
+                <p class="card-text">{{ update_list.2.title }}</p>
+                <p class="card-text"><small class="text-muted">{{ update_list.2.updated_at|naturaltime }}</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% load static %}
+{{ favorites|json_script:"favorites-json" }}
+<script src="{% static 'slider.js' %}" defer></script>
+
+
+{% endblock %}

@@ -32,7 +32,7 @@
                 {% url 'home:tech' as tech %}
                 <div style="display: inline-block;">
                     <a class="nav-item nav-link" {% if request.get_full_path == tech %}class="active"{% endif %} href="{% url 'home:tech' %}">Tech Info
-                        <img src="../static/github-mark-white.png" width="7%" height="7%" alt="...">
+                        <img src="/static/github-mark-white.png" width="7%" height="7%" alt="...">
                     </a>
                 </div>
             </div>

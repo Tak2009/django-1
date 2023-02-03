@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 from django.views.static import serve
 from django.views.generic import TemplateView
 from daisy.apis import LoginView, LogoutView
+from django.conf.urls.static import static
 
 urlpatterns = [
     # path('', include('ads.urls')),
@@ -57,6 +58,10 @@ urlpatterns += [
         }
     ),
 ]
+
+# https://itc.tokyo/django/setup-media-root/
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Switch to social login if it is configured
 try:
