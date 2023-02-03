@@ -1,0 +1,36 @@
+/*ニュース1行の周りの余白*/
+.slider a{
+    display: block;
+    background:#fff;
+    padding:20px;
+    font-size: 150%
+}
+
+/*日付*/
+.slider span {
+    display:inline-block;
+    font-size:0.8rem;
+    margin-right:10px;
+    color:#777;
+    font-size: 100%;
+}
+
+/*768px以下の見た目 ※1行のままにしたい場合は不要　*/
+@media screen and (max-width:768px) {
+    .slider {
+        padding:20px;
+        background:#fff;
+    }
+
+    .slider li {
+        border-bottom:1px dashed #ccc;
+    }
+
+    .slider li:last-child {
+        border-bottom:none;
+    }
+    .slider span {
+        display:block;
+		padding-bottom:10px;
+    }
+}

@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 from django.core.validators import MinLengthValidator
-from django.conf import settings #https://learndjango.com/tutorials/django-best-practices-referencing-user-model
+from django.conf import settings #https://learndjango.com/tutorials/django-best-practices-referencing-user-model, https://docs.djangoproject.com/en/4.0/topics/signals/
 
 class Pic(models.Model) :
     title = models.CharField(
@@ -10,7 +10,7 @@ class Pic(models.Model) :
             null=True,
     )
     # Picture
-    pic = models.ImageField(upload_to='', null=True)
+    pic = models.ImageField(upload_to='', null=True, blank=True)
     comments = models.ManyToManyField(settings.AUTH_USER_MODEL,
         through='Comment', related_name='comments_owned')
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
