@@ -7,13 +7,12 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css">
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/slider.css' %}">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
 <!-- slider: -->
 {% endblock %}
 
 <h1>Cat Monitor</h1>
-<h3>Let's see what she does everyday while she is out of our sight....</h3>
+<h3>Let's see what she does everyday while she is out of our sight.... To use full functionality, please log in</h3>
 <!-- <h3>Our Cat monitor function is still under construction. It will be connected with our real-time Raspi Monitor device in the near future</h3>
 <div class="container-fluid">
     <div class="row">
@@ -72,10 +71,9 @@
         </div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
 {% load static %}
-{{ favorites|json_script:"favorites-json" }}
-<script src="{% static 'slider.js' %}" defer></script>
-
+<script src="{% static 'slider.js' %}"></script>
 
 {% endblock %}
