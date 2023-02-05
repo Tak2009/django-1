@@ -1,6 +1,3 @@
-# from django.shortcuts import render
-
-# Create your views here.
 from onestop.models import Recipe, Note, Favo
 from onestop.owner import OwnerDetailView, OwnerDeleteView
 from django.shortcuts import render, redirect, get_object_or_404
@@ -13,9 +10,14 @@ from django.db.models import Q
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from taggit.models import Tag
 from django.views.generic.list import ListView
+# https://stackoverflow.com/questions/16458166/how-to-disable-djangos-csrf-validation
+from django.views.decorators.csrf import csrf_exempt # for add and delete favorites
+from django.utils.decorators import method_decorator # for add and delete favorites
+from django.db.utils import IntegrityError # for add and delete favorites
+
 
 class RecipeListView(View):
-    # model = Ad
+    # model = Recipe
     # By convention:
     template_name = "onestop/recipe_list.html"
 
@@ -42,8 +44,6 @@ class RecipeListView(View):
             rows = request.user.favorite_recipes.values('id')
             # favorites = [2, 4, ...] using list comprehension
             favorites = [ row['id'] for row in rows ]
-            print('####check####')
-            print(favorites)
 
         ctx = {'recipe_list' : recipe_list, 'favorites': favorites, "search": strval}
         return render(request, self.template_name, ctx)
@@ -52,12 +52,14 @@ class RecipeListView(View):
 class RecipeDetailView(OwnerDetailView):
     model = Recipe
     template_name = "onestop/recipe_detail.html"
+    
     def get(self, request, pk) :
         x = Recipe.objects.get(id=pk)
         notes = Note.objects.filter(recipe=x).order_by('-updated_at')
         note_form = NoteForm()
         context = { 'recipe' : x, 'notes': notes, 'note_form': note_form }
         return render(request, self.template_name, context)
+
 
 class RecipeCreateView(LoginRequiredMixin, View):
     template_name = 'onestop/recipe_form.html'
@@ -70,22 +72,18 @@ class RecipeCreateView(LoginRequiredMixin, View):
 
     def post(self, request, pk=None):
         form = CreateForm(request.POST, request.FILES or None)
-
         if not form.is_valid():
             ctx = {'form': form}
             return render(request, self.template_name, ctx)
-
         # Add owner to the model before saving
         recipe = form.save(commit=False)
         recipe.owner = self.request.user
         recipe.save()
-
         # https://www.dj4e.com/assn/dj4e_ads4.md?PHPSESSID=bd08ca99d78434177e27b51978bafaf9
         # https://django-taggit.readthedocs.io/en/latest/forms.html#commit-false
-        form.save_m2m()    # Add this
-        ##################
-
+        form.save_m2m()    # Add this for taggit
         return redirect(self.success_url)
+
 
 class RecipeUpdateView(LoginRequiredMixin, View):
     template_name = 'onestop/recipe_form.html'
@@ -100,21 +98,20 @@ class RecipeUpdateView(LoginRequiredMixin, View):
     def post(self, request, pk=None):
         recipe = get_object_or_404(Recipe, id=pk, owner=self.request.user)
         form = CreateForm(request.POST, request.FILES or None, instance=recipe)
-
         if not form.is_valid():
             ctx = {'form': form}
             return render(request, self.template_name, ctx)
-
         recipe = form.save(commit=False)
         recipe.save()
         # https://www.dj4e.com/assn/dj4e_ads4.md?PHPSESSID=bd08ca99d78434177e27b51978bafaf9
         # https://django-taggit.readthedocs.io/en/latest/forms.html#commit-false
-        form.save_m2m()    # Add this
-  
+        form.save_m2m()    # Add this for taggit
         return redirect(self.success_url)
+
 
 class RecipeDeleteView(OwnerDeleteView):
     model = Recipe
+
 
 def stream_file(request, pk):
     recipe = get_object_or_404(Recipe, id=pk)
@@ -123,6 +120,7 @@ def stream_file(request, pk):
     response['Content-Length'] = len(recipe.picture)
     response.write(recipe.picture)
     return response
+
 
 class NoteCreateView(LoginRequiredMixin, View):
     def post(self, request, pk) :
@@ -144,7 +142,8 @@ class TagListView(ListView):
     model = Tag
     template_name = "onestop/tag_list.html"
     context_object_name = 'tag_list'
-  
+
+
 class RecipeByTagListView(ListView):
     # https://django-taggit.readthedocs.io/en/latest/api.html#filtering
     model = Tag
@@ -158,6 +157,7 @@ class RecipeByTagListView(ListView):
         context = {'recipes': recipes, 'tag_name' : name }
         return render(request, self.template_name, context)
 
+
 def remove_all_tags_without_objects(request):
     success_url = reverse_lazy('onestop:tag_list')
     for tag in Tag.objects.all():
@@ -168,10 +168,6 @@ def remove_all_tags_without_objects(request):
             print('Keeping: {}'.format(tag))
     return redirect(success_url) 
 
-# https://stackoverflow.com/questions/16458166/how-to-disable-djangos-csrf-validation
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-from django.db.utils import IntegrityError
 
 @method_decorator(csrf_exempt, name='dispatch')
 class AddFavoView(LoginRequiredMixin, View):
@@ -193,7 +189,7 @@ class DeleteFavoView(LoginRequiredMixin, View):
         try:
             # fav = Fav.objects.get(user=request.user, ad=t).delete()
             Favo.objects.get(user=request.user, recipe=t).delete()
-        except Fav.DoesNotExist as e:
+        except Favo.DoesNotExist as e:
             pass
 
         return HttpResponse()

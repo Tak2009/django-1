@@ -2,17 +2,9 @@ from django.shortcuts import  render, redirect
 from django.views import View
 from django.conf import settings
 from django.contrib import messages  
-# from .forms import CustomUserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth import login
 from home.forms import NewUserForm
-
-
-
-# Create your views here.
-
-# This is a little complex because we need to detect when we are
-# running in various configurations
 
 
 class HomeView(View):
@@ -26,16 +18,6 @@ class HomeView(View):
         }
         return render(request, 'home/main.html', context)
 
-# def register(request):
-# 	if request.POST == 'POST':
-# 		form = UserCreationForm()
-# 		if form.is_valid():
-# 			form.save()
-# 			messages.success(request, 'Account created successfully')
-# 	else:
-# 		form = UserCreationForm()
-# 		context = {'form':form}
-# 	return render(request, 'home/register.html', context)
 
 def register(request):
 	template_name = "home/register.html"

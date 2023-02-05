@@ -1,11 +1,9 @@
 
 from daisy.models import Pic
 from daisy.serializers import PicSerializer
-
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import Http404
-
 from rest_framework import viewsets, routers, status, generics, mixins
 from rest_framework.parsers import JSONParser
 from rest_framework.views import APIView
@@ -46,7 +44,6 @@ class PicListView(generics.GenericAPIView,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
                     ):
-
     serializer_class = PicSerializer
     queryset = Pic.objects.all()
     lookup_field = 'id'
@@ -158,7 +155,6 @@ class PicListView(generics.GenericAPIView,
 
 
 class LoginView(APIView):
-
     def post(self, request):
         serialized = LoginSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)

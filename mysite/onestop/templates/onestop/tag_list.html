@@ -1,23 +1,21 @@
 {% extends "base_menu.html" %}
+
 {% block content %}
 <h1>Tags</h1>
 <ul>
-    <!-- Iterate over object_list -->
     {% for tag in tag_list %}
-    <!-- Display Objects -->
     <li style="display: block;"><a href="{% url 'onestop:recipe_by_tag_list' tag.name %}">{{ tag.name }}</a></li>
-    <!-- If object_list is empty  -->
     {% empty %}
     <ol>No tags yet.</ol>
     {% endfor %}
 </ul>
-
 {% if user.is_authenticated and user.is_superuser%}
-<p><a href="{% url 'onestop:delete_unused_tags' %}">Delete unused tags!</a></p>
+<p>
+    <a href="{% url 'onestop:delete_unused_tags' %}">Delete unused tags!</a>
+</p>
 {% elif user.is_authenticated and not user.is_superuser%}
 <p>To delete unused tags, please log in with a superuser account | <a href="{% url 'logout' %}?next={% url 'login' %}?next={% url 'onestop:tag_list' %}">Logout</a></p>
 {% else %}
 <p>To delete unused tags, please log in with a superuser account | <a href="{% url 'login' %}?next={% url 'onestop:tag_list' %}">Login</a></p>
 {% endif %}
-
 {% endblock %}

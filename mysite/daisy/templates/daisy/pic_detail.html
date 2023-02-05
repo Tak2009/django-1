@@ -22,9 +22,7 @@
    onclick="document.getElementById('overlay').style.display = 'none';" >
 <img style="width:90%;margin-top: 50px; border:3px solid black;" src="/media/{{ pic.pic }}">
 </div>
-
 {% endif %}
-
 <h1>{{ pic.title }}</h1>
 {% if pic.pic %}
 <!-- https://itc.tokyo/django/read-css-file/ -->
@@ -34,30 +32,29 @@
 {% else %}
 <p>Evidence is under review for this move.</p>
 {% endif %}
-
 {% if not user.is_authenticated %}
 <p>
-  <a href="{% url 'daisy:all' %}">All Cats</a>
+    <a href="{% url 'daisy:all' %}">All Cats</a>
 </p>
 {% endif %}
 {% if user.is_authenticated %}
 <br clear="all"/>
 <p>
-{% load crispy_forms_tags %}
-<form method="post" action="{% url 'daisy:pic_comment_create' pic.id %}">
-    {% csrf_token %}
-    {{ comment_form|crispy }}
-<input type="submit" value="Submit Your Comment">
-<input type="submit" value="All Cats" onclick="window.location.href='{% url 'daisy:all' %}';return false;">
-</form>
+    {% load crispy_forms_tags %}
+    <form method="post" action="{% url 'daisy:pic_comment_create' pic.id %}">
+        {% csrf_token %}
+        {{ comment_form|crispy }}
+        <input type="submit" value="Submit Your Comment">
+        <input type="submit" value="All Cats" onclick="window.location.href='{% url 'daisy:all' %}';return false;">
+    </form>
 </p>
 {% endif %}
 {% for comment in comments %}
 <p> &#x1f431; Comment: {{ comment.comment }}
-(by {{ comment.owner }}, {{ comment.updated_at|naturaltime }})
-{% if user == comment.owner %}
-<a href="{% url 'daisy:pic_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
-{% endif %}
+    (by {{ comment.owner }}, {{ comment.updated_at|naturaltime }})
+    {% if user == comment.owner %}
+    <a href="{% url 'daisy:pic_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
+    {% endif %}
 </p>
 {% endfor %}
 {% endblock %}

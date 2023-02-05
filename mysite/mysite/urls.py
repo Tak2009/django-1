@@ -29,7 +29,6 @@ urlpatterns = [
     path('onestop/', include('onestop.urls')),
     path('daisy/', include('daisy.urls')),
     path('api/v1/', include('daisy.api_urls')),
-    # path('api/v1/auth/', include('rest_framework.urls')), # https://youtu.be/ekhUhignYTU?list=PL1WVjBsN-_NJ4urkLt7iVDocVu_ZQgVzF&t=863
     path('api/v1/auth/login/', LoginView.as_view()),
     path('api/v1/auth/logout/', LogoutView.as_view()),
     path('plant/', include('plant.urls')),
@@ -75,5 +74,4 @@ except:
     print('Using registration/login.html as the login template')
 
 # References
-
 # https://docs.djangoproject.com/en/3.0/ref/urls/#include

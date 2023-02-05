@@ -1,8 +1,7 @@
 from django.db import models
-
-# Create your models here.
 from django.core.validators import MinLengthValidator
 from django.conf import settings #https://learndjango.com/tutorials/django-best-practices-referencing-user-model, https://docs.djangoproject.com/en/4.0/topics/signals/
+
 
 class Pic(models.Model) :
     title = models.CharField(
@@ -25,10 +24,8 @@ class Comment(models.Model) :
     comment = models.TextField(
         validators=[MinLengthValidator(3, "Comment must be greater than 3 characters")]
     )
-
     pic = models.ForeignKey(Pic, on_delete=models.CASCADE)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

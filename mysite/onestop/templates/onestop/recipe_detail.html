@@ -18,33 +18,31 @@
 
 {% block content %}
 {% if recipe.content_type %}
-<div id="overlay" class="overlay" style="text-align: center;"
-   onclick="document.getElementById('overlay').style.display = 'none';" >
-<img style="width:90%;margin-top: 50px; border:3px solid black;" src="{% url 'onestop:recipe_picture' recipe.id %}">
+<div id="overlay" class="overlay" style="text-align: center;" onclick="document.getElementById('overlay').style.display = 'none';" >
+    <img style="width:90%;margin-top: 50px; border:3px solid black;" src="{% url 'onestop:recipe_picture' recipe.id %}">
 </div>
 {% endif %}
 <span style="float: right;">
-({{ recipe.updated_at|naturaltime }})
-{% if recipe.owner == user %}
-<a href="{% url 'onestop:recipe_update' recipe.id %}"><i class="fa fa-pencil"></i></a>
-<a href="{% url 'onestop:recipe_delete' recipe.id %}"><i class="fa fa-trash"></i></a>
-{% endif %}
+    ({{ recipe.updated_at|naturaltime }})
+    {% if recipe.owner == user %}
+    <a href="{% url 'onestop:recipe_update' recipe.id %}"><i class="fa fa-pencil"></i></a>
+    <a href="{% url 'onestop:recipe_delete' recipe.id %}"><i class="fa fa-trash"></i></a>
+    {% endif %}
 </span>
 <h1>{{ recipe.title }}</h1>
 {% if recipe.content_type %}
-<img style="float:right; max-width:50%;" src="{% url 'onestop:recipe_picture' recipe.id %}"
-    onclick="document.getElementById('overlay').style.display = 'block';">
+<img style="float:right; max-width:50%;" src="{% url 'onestop:recipe_picture' recipe.id %}" onclick="document.getElementById('overlay').style.display = 'block';">
 {% endif %}
 <p>
 {{ recipe.text }}
 </p>
 {% if recipe.tags.all %}
 <p>Tags:
-  {% for tag in recipe.tags.all %}
-  <!-- https://django-taggit.readthedocs.io/en/latest/forms.html
-  https://dev.to/tikam02/how-to-implement-django-search-field-and-tags-keywords-286a -->
-  <span style="background-color: rgb(236, 147, 31); display: inline-block; border-radius: 3px; font-size: 100%; font-weight: 500; padding: 0 4px; color: rgb(252, 252, 244);">{{ tag }}</span>
-  {% endfor %}
+    {% for tag in recipe.tags.all %}
+    <!-- https://django-taggit.readthedocs.io/en/latest/forms.html
+    https://dev.to/tikam02/how-to-implement-django-search-field-and-tags-keywords-286a -->
+    <span style="background-color: rgb(236, 147, 31); display: inline-block; border-radius: 3px; font-size: 100%; font-weight: 500; padding: 0 4px; color: rgb(252, 252, 244);">{{ tag }}</span>
+    {% endfor %}
 </p>
 {% endif %}
 <p>
@@ -52,27 +50,27 @@
 </p>
 {% if not user.is_authenticated %}
 <p>
-  <a href="{% url 'onestop:all' %}">All Recipes</a>
+    <a href="{% url 'onestop:all' %}">All Recipes</a>
 </p>
 {% endif %}
 {% if user.is_authenticated %}
 <br clear="all"/>
 <p>
-{% load crispy_forms_tags %}
-<form method="post" action="{% url 'onestop:recipe_note_create' recipe.id %}">
-    {% csrf_token %}
-    {{ note_form|crispy }}
-<input type="submit" value="Submit">
-<input type="submit" value="All Recipes" onclick="window.location.href='{% url 'onestop:all' %}';return false;">
-</form>
+    {% load crispy_forms_tags %}
+    <form method="post" action="{% url 'onestop:recipe_note_create' recipe.id %}">
+        {% csrf_token %}
+        {{ note_form|crispy }}
+        <input type="submit" value="Submit">
+        <input type="submit" value="All Recipes" onclick="window.location.href='{% url 'onestop:all' %}';return false;">
+    </form>
 </p>
 {% endif %}
 {% for note in notes %}
 <p> {{ note.text }}
-({{ note.updated_at|naturaltime }})
-{% if user == note.owner %}
-<a href="{% url 'onestop:recipe_note_delete' note.id %}"><i class="fa fa-trash"></i></a>
-{% endif %}
+    ({{ note.updated_at|naturaltime }})
+    {% if user == note.owner %}
+    <a href="{% url 'onestop:recipe_note_delete' note.id %}"><i class="fa fa-trash"></i></a>
+    {% endif %}
 </p>
 {% endfor %}
 {% endblock %}

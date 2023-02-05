@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate
 #         # fields ='__all__'
 #         fields = ('id','title', 'pic', 'url')
 
+
 class PicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pic
@@ -24,7 +25,6 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         username = data.get("username", "")
         password =data.get("password", "")
-
         if username and password:
             user = authenticate(username=username, password=password)
             if user:

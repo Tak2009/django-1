@@ -4,6 +4,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from onestop.humanize import naturalsize
 from taggit.forms import TagField
 
+# override django-taggit tags so that they are always lowercase
 # https://github.com/jazzband/django-taggit/blob/master/taggit/forms.py
 # https://docs.djangoproject.com/en/4.1/ref/forms/validation/
 # https://stackoverflow.com/questions/24313201/convert-all-charfield-form-field-inputs-to-lowercase-in-django-forms
@@ -11,11 +12,10 @@ class TagCustomField(TagField):
     def to_python(self, value):
         return value.lower()
 
-# Create the form class.
+
 class CreateForm(forms.ModelForm):
     max_upload_limit = 2 * 1024 * 1024
     max_upload_limit_text = naturalsize(max_upload_limit)
-
     picture = forms.FileField(required=False, label='File to Upload <= '+max_upload_limit_text)
     upload_field_name = 'picture'
 
@@ -45,12 +45,9 @@ class CreateForm(forms.ModelForm):
             bytearr = f.read()
             instance.content_type = f.content_type
             instance.picture = bytearr  # Overwrite with the actual image data
-
         if commit:
-
             # https://django-taggit.readthedocs.io/en/latest/forms.html#commit-false
             self.save_m2m()
-            ##################
             instance.save()
                 
         return instance
