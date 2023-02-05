@@ -18,10 +18,8 @@ urlpatterns = [
         views.NoteDeleteView.as_view(), name='recipe_note_delete'),
     path('recipe/<int:pk>/favorite', views.AddFavoView.as_view(), name='recipe_favorite'),
     path('recipe/<int:pk>/unfavorite', views.DeleteFavoView.as_view(), name='recipe_unfavorite'),
-    path('tags/', views.TagListView.as_view(), name='tag_list'),
-    # https://django-taggit.readthedocs.io/en/latest/api.html
-    path('tags/<str:name>/recipes', views.RecipeByTagListView.as_view(), name='recipe_by_tag_list'),
-    # https://github.com/jazzband/django-taggit/issues/294
+    path('tags/', views.TagListView.as_view(), name='tag_list'), # https://django-taggit.readthedocs.io/en/latest/api.html
+    path('tags/<str:name>/recipes', views.RecipeByTagListView.as_view(), name='recipe_by_tag_list'), # https://github.com/jazzband/django-taggit/issues/294
     path('tags/delete/unused-tags', views.remove_all_tags_without_objects, name='delete_unused_tags'),
 ]
 
