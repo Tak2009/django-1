@@ -34,7 +34,7 @@
 <img style="float:right; max-width:50%;" src="{% url 'onestop:recipe_picture' recipe.id %}" onclick="document.getElementById('overlay').style.display = 'block';">
 {% endif %}
 <p>
-{{ recipe.text }}
+{{ recipe.text|safe }} <!-- RitchText -->
 </p>
 {% if recipe.tags.all %}
 <p>Tags:

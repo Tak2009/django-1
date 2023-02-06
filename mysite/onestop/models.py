@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinLengthValidator
 from django.conf import settings
 from taggit.managers import TaggableManager
+from ckeditor.fields import RichTextField
 
 
 class Recipe(models.Model) :
@@ -10,7 +11,7 @@ class Recipe(models.Model) :
             validators=[MinLengthValidator(2, "Title must be greater than 2 characters")]
     )
     website = models.URLField(max_length=200)
-    text = models.TextField()
+    text = RichTextField(blank=True, null=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     notes = models.ManyToManyField(settings.AUTH_USER_MODEL,
         through='Note', related_name='notes_owned')

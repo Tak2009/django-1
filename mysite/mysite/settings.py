@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework', 
     'rest_framework.authtoken', # https://youtu.be/ekhUhignYTU?list=PL1WVjBsN-_NJ4urkLt7iVDocVu_ZQgVzF&t=783
     'corsheaders', # http://www.srikanthtechnologies.com/blog/python/enable_cors_for_django.aspx, https://github.com/adamchainz/django-cors-headers
+    'ckeditor', # RichTextField for onestop app
 
     # Extensions
     'django_extensions',
