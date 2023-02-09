@@ -3,18 +3,21 @@
 {% block content %}
 <!-- https://getbootstrap.com/docs/4.0/components/progress/ -->
 <h1>Tech Info</h>
-<h2>1. Languages used</h2>
+<h2>1. Languages Used</h2>
 <div class="container py-4" id="skill"></div>
 <br/>
 <h2>2. DRF Web APIs</h2>
-<h4>These API endpoints are developed for the Raspberry Pi Cat Monitor device client to post all the images to the remote server</h4>
+<h4>
+    These API endpoints are developed for the Raspberry Pi Cat Monitor client device to post all the images to the remote server. 
+    authentication_classes = [TokenAuthentication, SessionAuthentication, BasicAuthentication] is applied.
+</h4>
 <br/>
 <ul>
     <li style="display: block;">
-        <a href="api/v1/pics/" target="_blank">For Admin (full methods available)</a>
+        <a href="api/v1/pics/" target="_blank">1. For Admin (full methods available)</a>
     </li>
     <li style="display: block;">
-        <a href="api/v1/generic/pics/" target="_blank">For Non Admin (GET only)</a>
+        <a href="api/v1/generic/pics/" target="_blank">2. For Non Admin (GET only)</a>
     </li>
 </ul>
 {% load static %}

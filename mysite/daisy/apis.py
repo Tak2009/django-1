@@ -22,10 +22,13 @@ class PicViewSet(viewsets.ModelViewSet):
     queryset = Pic.objects.all()
     lookup_field = 'id'
     # https://youtu.be/ekhUhignYTU?list=PL1WVjBsN-_NJ4urkLt7iVDocVu_ZQgVzF&t=863
+    # https://testdriven.io/blog/drf-views-part-1/
     authentication_classes = [TokenAuthentication, SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated, IsAdminUser]
     parser_classes = (JSONParser, FormParser, MultiPartParser)
 
+    # https://www.django-rest-framework.org/api-guide/viewsets/#marking-extra-actions-for-routing
+    # https://testdriven.io/blog/drf-views-part-3/
     @action(detail=True, methods=['POST'])
     def upload(self, request):
         serialized = PicSerializer(data=request.data)

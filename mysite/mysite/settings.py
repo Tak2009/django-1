@@ -53,9 +53,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'social_django',
     'taggit',
+    # Apps
     'home.apps.HomeConfig',
     'onestop.apps.OnestopConfig',
-    # 'ads.apps.AdsConfig',
     'daisy.apps.DaisyConfig',
     'plant.apps.PlantConfig',
 ]

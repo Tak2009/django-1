@@ -168,7 +168,8 @@ def remove_all_tags_without_objects(request):
             print('Keeping: {}'.format(tag))
     return redirect(success_url) 
 
-
+# https://docs.djangoproject.com/en/4.1/topics/class-based-views/intro/#decorating-the-class
+# https://docs.djangoproject.com/en/4.1/ref/csrf/#module-django.views.decorators.csrf
 @method_decorator(csrf_exempt, name='dispatch')
 class AddFavoView(LoginRequiredMixin, View):
     def post(self, request, pk) :
