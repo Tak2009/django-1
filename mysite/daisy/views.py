@@ -13,7 +13,7 @@ class PicListView(View):
 
     def get(self, request):
         flash_list = Pic.objects.all().order_by('-created_at')[:5]
-        update_list = Pic.objects.exclude(pic="").order_by('-updated_at')[:5]
+        update_list = Pic.objects.exclude(pic="").order_by('-updated_at')[:9]
         ctx = {'flash_list' : flash_list, 'update_list': update_list}
         return render(request, self.template_name, ctx)
 

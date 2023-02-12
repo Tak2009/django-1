@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css">
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/slider.css' %}">
+<link rel="stylesheet" href="{% static 'css/pic_list.css' %}">
 <!-- slider: -->
 {% endblock %}
 
@@ -32,37 +33,25 @@
         {% endfor %}
     </ul>
 </div>
-<!-- カード -->
-<h4>3. Cat Moves</h4>
-<p>3 Most Recent Moves With Evidence</p>
-<div class="container py-4" id="cats">
-    <div class="card-deck">
-        <div class="card">
-            <img src="/media/{{ update_list.0.pic }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><a href="{% url 'daisy:pic_detail' update_list.0.id %}">MOVE 1</a></h5>
-                <p class="card-text">{{ update_list.0.title }}</p>
-                <p class="card-text"><small class="text-muted">{{ update_list.0.updated_at|naturaltime }}</small></p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="/media/{{ update_list.1.pic }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><a href="{% url 'daisy:pic_detail' update_list.1.id %}">MOVE 2</a></h5>
-                <p class="card-text">{{ update_list.1.title }}</p>
-                <p class="card-text"><small class="text-muted">{{ update_list.1.updated_at|naturaltime }}</small></p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="/media/{{ update_list.2.pic }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><a href="{% url 'daisy:pic_detail' update_list.2.id %}">MOVE 3</a></h5>
-                <p class="card-text">{{ update_list.2.title }}</p>
-                <p class="card-text"><small class="text-muted">{{ update_list.2.updated_at|naturaltime }}</small></p>
-            </div>
+<!-- 3D Slideshow Section -->
+<!-- https://codepen.io/jaskiranchhokar/pen/wmGXav -->
+<h4>3. Cat Moves With Hard Evidence</h4>
+<div id="slideshow">
+    <div class="entire-content">
+        <div class="content-carrousel">
+            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.0.id %}"><img src="/media/{{ update_list.0.pic }}" class="card-img-top" alt="..."></a></figure>
+            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.1.id %}"><img src="/media/{{ update_list.1.pic }}" class="card-img-top" alt="..."></a></figure>
+            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.2.id %}"><img src="/media/{{ update_list.2.pic }}" class="card-img-top" alt="..."></a></figure>
+            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.3.id %}"><img src="/media/{{ update_list.3.pic }}" class="card-img-top" alt="..."></a></figure>
+            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.4.id %}"><img src="/media/{{ update_list.4.pic }}" class="card-img-top" alt="..."></a></figure>
+            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.5.id %}"><img src="/media/{{ update_list.5.pic }}" class="card-img-top" alt="..."></a></figure>
+            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.6.id %}"><img src="/media/{{ update_list.6.pic }}" class="card-img-top" alt="..."></a></figure>
+            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.7.id %}"><img src="/media/{{ update_list.7.pic }}" class="card-img-top" alt="..."></a></figure>
+            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.8.id %}"><img src="/media/{{ update_list.8.pic }}" class="card-img-top" alt="..."></a></figure>
         </div>
     </div>
-</div>
+</div>  
+
 <!-- slider: https://coco-factory.jp/ugokuweb/move01/9-4-1/ -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
