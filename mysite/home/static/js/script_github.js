@@ -15,14 +15,14 @@ const renderProject = (projects) => {
             project_li = `<li data-target="#carouselExampleIndicators" data-slide-to=${project_index} class="active" />`
             project_div = 
                 `<div class="carousel-item active">
-                    <p style="margin-bottom: 0; margin-left: 2vw;">Repository Name: ${project}</p>
+                    <p style="margin-bottom: 0; margin-left: 2vw; margin-top: 0.5vw;">Repository Name: ${project}</p>
                     <div class="container py-4" id=${project_index} style="display: inline-block; min-height: 20vh;"></div>
                 </div>`
         } else {
             project_li = `<li data-target="#carouselExampleIndicators" data-slide-to=${project_index} />`
             project_div = 
                 `<div class="carousel-item">
-                    <p style="margin-bottom: 0; margin-left: 2vw;">Repository Name: ${project}</p>
+                    <p style="margin-bottom: 0; margin-left: 2vw; margin-top: 0.5vw;">Repository Name: ${project}</p>
                     <div class="container py-4" id=${project_index} style="display: inline-block; min-height: 20vh;"></div>
                 </div>`
         }
