@@ -1,5 +1,10 @@
 {% extends "base_menu.html" %}
 
+{% block head %} 
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+
 {% block content %}
 <h1>Welcome to {{ settings.APP_NAME }}</h1>
 <h3>
@@ -15,8 +20,8 @@
 <br/>
 <!-- スライダー -->
 <!-- https://getbootstrap.com/docs/4.0/components/carousel/ -->
-<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000">
-    <ol class="carousel-indicators">
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade parent div-cont" data-ride="carousel" data-interval="10000">
+    <ol class="carousel-indicators child">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
@@ -35,8 +40,7 @@
                         </h4>
                     </div>
                     <div class="col-6"> 
-                        <iframe src="https://giphy.com/embed/3ohze1W9gqYUDx7l2U" width="400" height="400" frameBorder="0" class="giphy-embed d-block w-100" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bbc-cooking-wine-3ohze1W9gqYUDx7l2U">via GIPHY</a></p>
-                        <!-- <img src="../static/img/sample1.jpg" class="d-block w-100" alt="..."> -->
+                        <iframe src="https://giphy.com/embed/3ohze1W9gqYUDx7l2U" width="400" height="400" frameBorder="0" class="giphy-embed d-block w-100" allowFullScreen></iframe><p style="text-align: right;"><a href="https://giphy.com/gifs/bbc-cooking-wine-3ohze1W9gqYUDx7l2U">via GIPHY</a></p>
                     </div>
                 </div>
             </div>
@@ -55,8 +59,7 @@
                         </h4>
                     </div>
                     <div class="col-6"> 
-                        <iframe src="https://giphy.com/embed/Ov5NiLVXT8JEc" width="400" height="400" frameBorder="0" class="giphy-embed d-block w-100" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cats-light-sabers-Ov5NiLVXT8JEc">via GIPHY</a></p>
-                        <!-- <img src="../static/img/sample2.jpg" class="d-block w-100" alt="..."> -->
+                        <iframe src="https://giphy.com/embed/Ov5NiLVXT8JEc" width="400" height="400" frameBorder="0" class="giphy-embed d-block w-100" allowFullScreen></iframe><p style="text-align: right;"><a href="https://giphy.com/gifs/cats-light-sabers-Ov5NiLVXT8JEc">via GIPHY</a></p>
                     </div>
                 </div>
             </div>
@@ -74,7 +77,7 @@
                         </h4>
                     </div>
                     <div class="col-6">
-                        <iframe src="https://giphy.com/embed/KhXEo7AR1sZoI" width="400" height="400" frameBorder="0" class="giphy-embed d-block w-100" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/loop-ants-escalator-KhXEo7AR1sZoI">via GIPHY</a></p>
+                        <iframe src="https://giphy.com/embed/KhXEo7AR1sZoI" width="400" height="400" frameBorder="0" class="giphy-embed d-block w-100" allowFullScreen></iframe><p style="text-align: right;"><a href="https://giphy.com/gifs/loop-ants-escalator-KhXEo7AR1sZoI">via GIPHY</a></p>
                     </div>
                 </div>
             </div>
@@ -85,7 +88,8 @@
         <span class="sr-only">Previous</span>
     </a>
     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="carousel-control-next-icon" aria-hidden="true" style="
+        background-color: black;"></span>
         <span class="sr-only">Next</span>
     </a>
 </div>
