@@ -11,13 +11,17 @@
         <a href="{% url 'onestop:all' %}"><i class="fa fa-undo"></i></a>
     </form>
     <br/>
-    <a href="#" title="filter recipes by favorite (just a DOM manipulation)" id="sort-favarite">
-        <span class="fa-stack">
-            <i class="fa fa-star fa-stack-1x" style="color: orange;"></i>
-            <i class="fa fa-star-o fa-stack-1x"></i>
-        </span>
-    </a>
-    <a href="{% url 'onestop:all' %}" title="undo favorite filter on recipes (HTTP GET)"><i class="fa fa-undo"></i></a>
+    <p><strong>Favorites Filter</strong>
+        <a href="#" title="filter recipes by favorite (just a DOM manipulation)" id="sort-favarite">
+            <span class="fa-stack">
+                <i class="fa fa-star fa-stack-1x" style="color: orange;"></i>
+                <i class="fa fa-star-o fa-stack-1x"></i>
+            </span>
+        </a>
+        <a href="{% url 'onestop:all' %}" title="undo favorite filter on recipes (HTTP GET)">
+            <i class="fa fa-undo"></i>
+        </a>
+    </p>
 </div>
 <p>
     {% if recipe_list %}
