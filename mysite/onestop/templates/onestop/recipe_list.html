@@ -2,7 +2,7 @@
 
 {% block content %}
 {% load static %}
-<div style="height: 91vh; border-radius: 10px; background-image: url('{% static "/img/recipe_background.jpg" %}');">
+<div class="container" style="height: 91vh; border-radius: 10px; background-image: url('{% static "/img/recipe_background.jpg" %}');">
     <h1>Recipes</h1>
     <h3>To use full functionality, please log in</h3>
     <div style="float:right; margin-left: 10%;">
@@ -30,10 +30,10 @@
         <ul id="registered-recipe-list">
             {% for recipe in recipe_list %}
             <li style="display: block;" id="{{ recipe.id }}">
-                <a href="{% url 'onestop:recipe_detail'  recipe.id %}">{{ recipe.title }}</a>
+                <a href="{% url 'onestop:recipe_detail'  recipe.id %}" style="color: black;">{{ recipe.title }}</a>
                 {% if recipe.owner == user %}
-                (<a href="{% url 'onestop:recipe_update' recipe.id %}">Edit</a> |
-                <a href="{% url 'onestop:recipe_delete' recipe.id %}">Delete</a>)
+                (<a href="{% url 'onestop:recipe_update' recipe.id %}" style="color: black;">Edit</a> |
+                <a href="{% url 'onestop:recipe_delete' recipe.id %}" style="color: black;">Delete</a>)
                 {% endif %}
                 {% if user.is_authenticated %}
                 <!-- Two hrefs with two stacked icons each - one showing and one hidden -->
@@ -66,15 +66,15 @@
     </p>
     <br/>
     <p>
-        <a href="{% url 'onestop:recipe_create' %}">Add a Recipe</a> |
+        <a href="{% url 'onestop:recipe_create' %}" style="color: black;">Add a Recipe</a> |
         {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}?next={% url 'onestop:all' %}">Logout</a>
+        <a href="{% url 'logout' %}?next={% url 'onestop:all' %}" style="color: black;">Logout</a>
         {% else %}
-        <a href="{% url 'login' %}?next={% url 'onestop:all' %}">Login</a>
+        <a href="{% url 'login' %}?next={% url 'onestop:all' %}" style="color: black;">Login</a>
         {% endif %}
     </p>
     <P>
-    <a href="{% url 'onestop:tag_list' %}">Recipes by Tag (Tag List)</a>
+    <a href="{% url 'onestop:tag_list' %}" style="color: black;">Recipes by Tag (Tag List)</a>
     </p>
 </div>
 <!-- https://docs.djangoproject.com/en/4.1/howto/static-files/ -->

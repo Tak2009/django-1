@@ -11,47 +11,48 @@
 {% endblock %}
 
 {% block content %}
-<h1>Cat Monitor</h1>
-<h3>Let's see what she does everyday while she is out of our sight.... To use full functionality, please log in</h3>
-<br/>
-<h4>1. The Flash - New Cat Moves: A Motion Deteced the Evidence Pic Is Under Review Before Published!</h4>
-<h5>&#x26a1; Latest: <a href="{% url 'daisy:pic_detail' flash_list.0.id %}">{{ flash_list.0.title }} ({{ flash_list.0.created_at|naturaltime }})</a> &#x26a1;</h5>
-<!-- スライド -->
-<div class="wrapper">
-    <ul class="slider">
-        {% for pic in flash_list %}
-        <li><a href="{% url 'daisy:pic_detail' pic.id %}"><span>{{ pic.created_at }}</span>&#x1f195; {{ pic.title }} &#x1f4f8;</a></li>
-        {% endfor %}
-    </ul>
-</div>
-<h4>2. Updates - Hard Evidece Added: Evidence Pics Added to the Records Below.</h4>
-<h5>&#x26a1; Latest: <a href="{% url 'daisy:pic_detail' update_list.0.id %}">{{ update_list.0.title }} ({{ update_list.0.updated_at|naturaltime }})</a> &#x26a1;</h5>
-<div class="wrapper">
-    <ul class="slider">
-        {% for pic in update_list %}
-        <li><a href="{% url 'daisy:pic_detail' pic.id %}"><span>{{ pic.updated_at }}</span>&#x1f575; {{ pic.title }} &#x26a0;</a></li>
-        {% endfor %}
-    </ul>
-</div>
-<!-- 3D Slideshow Section -->
-<!-- https://codepen.io/jaskiranchhokar/pen/wmGXav -->
-<h4>3. Cat Moves With Hard Evidence</h4>
-<div id="slideshow">
-    <div class="entire-content">
-        <div class="content-carrousel">
-            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.0.id %}"><img src="/media/{{ update_list.0.pic }}" class="card-img-top" alt="..."></a></figure>
-            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.1.id %}"><img src="/media/{{ update_list.1.pic }}" class="card-img-top" alt="..."></a></figure>
-            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.2.id %}"><img src="/media/{{ update_list.2.pic }}" class="card-img-top" alt="..."></a></figure>
-            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.3.id %}"><img src="/media/{{ update_list.3.pic }}" class="card-img-top" alt="..."></a></figure>
-            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.4.id %}"><img src="/media/{{ update_list.4.pic }}" class="card-img-top" alt="..."></a></figure>
-            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.5.id %}"><img src="/media/{{ update_list.5.pic }}" class="card-img-top" alt="..."></a></figure>
-            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.6.id %}"><img src="/media/{{ update_list.6.pic }}" class="card-img-top" alt="..."></a></figure>
-            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.7.id %}"><img src="/media/{{ update_list.7.pic }}" class="card-img-top" alt="..."></a></figure>
-            <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.8.id %}"><img src="/media/{{ update_list.8.pic }}" class="card-img-top" alt="..."></a></figure>
-        </div>
+<div class="container">
+    <h1>Cat Monitor</h1>
+    <h3>Let's see what she does everyday while she is out of our sight.... To use full functionality, please log in</h3>
+    <br/>
+    <h4>1. The Flash - New Cat Moves: A Motion Deteced the Evidence Pic Is Under Review Before Published!</h4>
+    <h5>&#x26a1; Latest: <a href="{% url 'daisy:pic_detail' flash_list.0.id %}">{{ flash_list.0.title }} ({{ flash_list.0.created_at|naturaltime }})</a> &#x26a1;</h5>
+    <!-- スライド -->
+    <div class="wrapper">
+        <ul class="slider">
+            {% for pic in flash_list %}
+            <li><a href="{% url 'daisy:pic_detail' pic.id %}"><span>{{ pic.created_at }}</span>&#x1f195; {{ pic.title }} &#x1f4f8;</a></li>
+            {% endfor %}
+        </ul>
     </div>
-</div>  
-
+    <h4>2. Updates - Hard Evidece Added: Evidence Pics Added to the Records Below.</h4>
+    <h5>&#x26a1; Latest: <a href="{% url 'daisy:pic_detail' update_list.0.id %}">{{ update_list.0.title }} ({{ update_list.0.updated_at|naturaltime }})</a> &#x26a1;</h5>
+    <div class="wrapper">
+        <ul class="slider">
+            {% for pic in update_list %}
+            <li><a href="{% url 'daisy:pic_detail' pic.id %}"><span>{{ pic.updated_at }}</span>&#x1f575; {{ pic.title }} &#x26a0;</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- 3D Slideshow Section -->
+    <!-- https://codepen.io/jaskiranchhokar/pen/wmGXav -->
+    <h4>3. Cat Moves With Hard Evidence</h4>
+    <div id="slideshow">
+        <div class="entire-content">
+            <div class="content-carrousel">
+                <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.0.id %}"><img src="/media/{{ update_list.0.pic }}" class="card-img-top" alt="..."></a></figure>
+                <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.1.id %}"><img src="/media/{{ update_list.1.pic }}" class="card-img-top" alt="..."></a></figure>
+                <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.2.id %}"><img src="/media/{{ update_list.2.pic }}" class="card-img-top" alt="..."></a></figure>
+                <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.3.id %}"><img src="/media/{{ update_list.3.pic }}" class="card-img-top" alt="..."></a></figure>
+                <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.4.id %}"><img src="/media/{{ update_list.4.pic }}" class="card-img-top" alt="..."></a></figure>
+                <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.5.id %}"><img src="/media/{{ update_list.5.pic }}" class="card-img-top" alt="..."></a></figure>
+                <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.6.id %}"><img src="/media/{{ update_list.6.pic }}" class="card-img-top" alt="..."></a></figure>
+                <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.7.id %}"><img src="/media/{{ update_list.7.pic }}" class="card-img-top" alt="..."></a></figure>
+                <figure class="shadow"><a href="{% url 'daisy:pic_detail' update_list.8.id %}"><img src="/media/{{ update_list.8.pic }}" class="card-img-top" alt="..."></a></figure>
+            </div>
+        </div>
+    </div>  
+</div>
 <!-- slider: https://coco-factory.jp/ugokuweb/move01/9-4-1/ -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>

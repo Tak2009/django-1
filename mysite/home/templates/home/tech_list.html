@@ -2,27 +2,29 @@
 
 {% block content %}
 <!-- https://getbootstrap.com/docs/4.0/components/progress/ -->
-<h1>Tech Info</h>
-<h2>1. Languages Used</h2>
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators" id="project-list"></ol>
-    <div class="carousel-inner" id="project-detail"></div>
+<div class="container">
+    <h1>Tech Info</h>
+    <h2>1. Languages Used</h2>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators" id="project-list"></ol>
+        <div class="carousel-inner" id="project-detail"></div>
+    </div>
+    <br/>
+    <h2>2. DRF Web APIs</h2>
+    <h4>
+        These API endpoints are developed for the Raspberry Pi Cat Monitor client device to post all the images to the remote server. 
+        authentication_classes = [TokenAuthentication, SessionAuthentication, BasicAuthentication] is applied.
+    </h4>
+    <br/>
+    <ul>
+        <li style="display: block;">
+            <a href="api/v1/pics/" target="_blank">1. For Admin (full methods available)</a>
+        </li>
+        <li style="display: block;">
+            <a href="api/v1/generic/pics/" target="_blank">2. For Non Admin (GET only)</a>
+        </li>
+    </ul>
 </div>
-<br/>
-<h2>2. DRF Web APIs</h2>
-<h4>
-    These API endpoints are developed for the Raspberry Pi Cat Monitor client device to post all the images to the remote server. 
-    authentication_classes = [TokenAuthentication, SessionAuthentication, BasicAuthentication] is applied.
-</h4>
-<br/>
-<ul>
-    <li style="display: block;">
-        <a href="api/v1/pics/" target="_blank">1. For Admin (full methods available)</a>
-    </li>
-    <li style="display: block;">
-        <a href="api/v1/generic/pics/" target="_blank">2. For Non Admin (GET only)</a>
-    </li>
-</ul>
 {% load static %}
 <script src="{% static 'js/api.js' %}" defer></script>
 <script src="{% static 'js/script_github.js' %}" defer></script>
