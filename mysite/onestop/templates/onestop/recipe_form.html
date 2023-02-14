@@ -2,19 +2,22 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<p>
-    <form action="" method="post" id="upload_form" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.media }}  <!-- RitchText -->
-        {{ form|crispy }}
-        <input type="submit" value="Submit">
-        <input type="submit" value="Cancel" onclick="window.location.href='{% url 'onestop:all' %}';return false;">
-    </form>
-</p>
+<div class="container">
+    <p>
+        <form action="" method="post" id="upload_form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}  <!-- RitchText -->
+            {{ form|crispy }}
+            <input type="submit" value="Submit">
+            <input type="submit" value="Cancel" onclick="window.location.href='{% url 'onestop:all' %}';return false;">
+        </form>
+    </p>
+</div>
 <!-- https://docs.djangoproject.com/en/4.1/howto/static-files/ -->
 {% load static %}
 <!-- https://docs.djangoproject.com/en/4.1/ref/templates/builtins/#json-script -->
 {{ form.upload_field_name|json_script:"upload-field-name" }}
 {{ form.max_upload_limit|json_script:"max-upload-limit" }}
 <script src="{% static 'js/script_recipe_form.js' %}" defer></script>
+
 {% endblock %}

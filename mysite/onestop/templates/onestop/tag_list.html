@@ -1,26 +1,28 @@
 {% extends "base_menu.html" %}
 
 {% block content %}
-<h1>Recipes by Tag (Tag List)</h1>
-<ul>
-    {% for tag in tag_list %}
-    <li style="display: block;"><a href="{% url 'onestop:recipe_by_tag_list' tag.name %}">{{ tag.name }}</a></li>
-    {% empty %}
-    <ol>No tags yet.</ol>
-    {% endfor %}
-</ul>
-<br/>
-<p>
-    <a href="{% url 'onestop:all' %}">All Recipes</a>
-</p>
+<div class="container">
+    <h1>Recipes by Tag (Tag List)</h1>
+    <ul>
+        {% for tag in tag_list %}
+        <li style="display: block;"><a href="{% url 'onestop:recipe_by_tag_list' tag.name %}">{{ tag.name }}</a></li>
+        {% empty %}
+        <ol>No tags yet.</ol>
+        {% endfor %}
+    </ul>
+    <br/>
+    <p>
+        <a href="{% url 'onestop:all' %}">All Recipes</a>
+    </p>
 
-{% if user.is_authenticated and user.is_superuser%}
-<p>
-    <a href="{% url 'onestop:delete_unused_tags' %}">Delete unused tags!</a>
-</p>
-{% elif user.is_authenticated and not user.is_superuser%}
-<p>To delete unused tags, please log in with a superuser account | <a href="{% url 'logout' %}?next={% url 'login' %}?next={% url 'onestop:tag_list' %}">Logout</a></p>
-{% else %}
-<p>To delete unused tags, please log in with a superuser account | <a href="{% url 'login' %}?next={% url 'onestop:tag_list' %}">Login</a></p>
-{% endif %}
+    {% if user.is_authenticated and user.is_superuser%}
+    <p>
+        <a href="{% url 'onestop:delete_unused_tags' %}">Delete unused tags!</a>
+    </p>
+    {% elif user.is_authenticated and not user.is_superuser%}
+    <p>To delete unused tags, please log in with a superuser account | <a href="{% url 'logout' %}?next={% url 'login' %}?next={% url 'onestop:tag_list' %}">Logout</a></p>
+    {% else %}
+    <p>To delete unused tags, please log in with a superuser account | <a href="{% url 'login' %}?next={% url 'onestop:tag_list' %}">Login</a></p>
+    {% endif %}
+</div>
 {% endblock %}
