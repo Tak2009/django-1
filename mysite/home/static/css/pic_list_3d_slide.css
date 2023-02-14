@@ -5,11 +5,10 @@
 	padding: 0;
 }
 
-
 #slideshow {
 	margin: 0 auto;
 	padding-top: 50px;
-	height: 600px;
+	/* height: 600px; */
 	width: 100%;
 	
 	box-sizing: border-box;

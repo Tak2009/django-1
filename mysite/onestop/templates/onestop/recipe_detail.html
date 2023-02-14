@@ -2,18 +2,8 @@
 {% load humanize %} <!-- https://docs.djangoproject.com/en/3.0/ref/contrib/humanize -->
 
 {% block head %}
-<style>
-.overlay{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  display: none;
-  background-color: rgba(0,0,0,0.5); /*dim the background*/
-}
-</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/pic_detail.css' %}">
 {% endblock %}
 
 {% block content %}

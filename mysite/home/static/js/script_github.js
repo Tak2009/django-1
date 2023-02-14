@@ -15,14 +15,14 @@ const renderProject = (projects) => {
             project_li = `<li data-target="#carouselExampleIndicators" data-slide-to=${project_index} class="active" />`
             project_div = 
                 `<div class="carousel-item active">
-                    <p style="margin-bottom: 0; margin-left: 2vw; margin-top: 0.5vw;">Repository Name: ${project}</p>
+                    <p style="margin-bottom: 0; margin-left: 2vw; margin-top: 0.5vw; color: white;"><strong>Repository Name: ${project}</strong></p>
                     <div class="container py-4" id=${project_index} style="display: inline-block; min-height: 20vh;"></div>
                 </div>`
         } else {
             project_li = `<li data-target="#carouselExampleIndicators" data-slide-to=${project_index} />`
             project_div = 
                 `<div class="carousel-item">
-                    <p style="margin-bottom: 0; margin-left: 2vw; margin-top: 0.5vw;">Repository Name: ${project}</p>
+                    <p style="margin-bottom: 0; margin-left: 2vw; margin-top: 0.5vw; color: white;"><strong>Repository Name: ${project}</strong></p>
                     <div class="container py-4" id=${project_index} style="display: inline-block; min-height: 20vh;"></div>
                 </div>`
         }
@@ -48,7 +48,7 @@ const renderLanguagesByProject = (project, project_index, project_name) => {
         let lang_progress_bar_div = 
             `<div class="progress-bar" role="progressbar" style="width: ${ratio}%; background:${background[lang_index % 6]}" aria-valuenow="${ratio * 100}" aria-valuemin="0" aria-valuemax="100" onMouseOut="this.style.background='${background[lang_index % 6]}';" onMouseOver="this.style.background='#EEF';">
                 <a href="https://github.com/Tak2009/${project_name}/search?l=${lang.toLowerCase()}" target="_blank" style="color: #f7f5f5" onMouseOut="this.style.color='#f7f5f5';" onMouseOver="this.style.color='#050505';">
-                    ${lang}(${ratio})%
+                    <p style="margin-bottom: 0; margin-top: 0;">${lang}(${ratio})%</p>
                 </a>
             </div>`
         div.insertAdjacentHTML("afterbegin", lang_progress_bar_div)

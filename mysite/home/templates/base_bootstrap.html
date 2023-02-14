@@ -31,66 +31,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
     <!--  -->
 
-<style>
-html {
-    font-size: 62.5%;
-}
-
-body {
-    font-size: 16px;
-    font-size: 1.6rem;
-}
- 
-h1, h2 {
-    line-height: 1.2;
-    margin-bottom: 8px;
-    margin-bottom: 0.8rem;
-}
-
-h1 {
-    font-size: 30px;
-    font-size: 3.0rem;
-}
-
-h2 {
-    font-size: 18px;
-    font-size: 1.8rem;
-}
-
-h3 {
-    font-size: 16px;
-    font-size: 1.6rem;
-}
-
-h4 {
-    font-size: 15px;
-    font-size: 1.5rem;
-}
-
-p {
-    font-size: 15px;
-    font-size: 1.5rem;
-
-}
-
-input[type="text"], input[type="url"]{
-    font-size: 12px;
-    font-size: 1.2rem;
-
-}
- 
-.main-text {
-    font-size: 14px;
-    font-size: 1.4rem;
-    line-height: 1.5;
-}
- 
-@media only screen and (min-width:651px) {
-    html {
-        font-size: 71.4286%;
-    }
-}
-</style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
 {% block head %} {% endblock %}
 
