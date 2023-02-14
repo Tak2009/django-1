@@ -7,7 +7,7 @@
 
 #slideshow {
 	margin: 0 auto;
-	padding-top: 50px;
+	/* padding-top: 50px; */
 	/* height: 600px; */
 	width: 100%;
 	
@@ -51,7 +51,7 @@
 	width: 190px;
 	perspective: 1000px;
 	position: relative;
-	padding-top: 80px;
+	padding-top: 40px;
 }
 
 .content-carrousel {
