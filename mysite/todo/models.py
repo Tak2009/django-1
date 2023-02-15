@@ -29,16 +29,21 @@ class Tile(models.Model) :
 
 class Task(models.Model) :
     title = models.CharField(
-            max_length=200,
-            validators=[MinLengthValidator(2, "Title must be greater than 2 characters")]
+        max_length=256,
+        validators=[MinLengthValidator(2, "Title must be greater than 2 characters")]
     )
     order_number = models.IntegerField(blank=False,
-                                    help_text='Integer field. input the order number please')
+        help_text='Integer field. input the order number please')
     description = RichTextField(blank=True, null=True)
-    task_type = models.CharField(max_length=256, null=True, blank=True,
-                                    help_text='Such as survey, discussion, diary')
-    tile = models.ForeignKey(Tile, on_delete=models.CASCADE,
-                                    help_text='Tasks need to be assigned to a tile and thus you need to create the tile first')
+    task_type = models.CharField(
+        max_length=256,
+        validators=[MinLengthValidator(2, "Task type must be greater than 2 characters")],
+        help_text='Such as survey, discussion, diary'
+    )
+    tile = models.ForeignKey(
+        Tile, on_delete=models.CASCADE,
+        help_text='Tasks need to be assigned to a tile and thus you need to create the tile first'
+    )
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
