@@ -9,6 +9,7 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = ('id', 'title', 'order_number', 'description', 'task_type', 'tile', 'owner', 'created_at')
+        # read_only_fields = ("owner",)
 
 
 class TileSerializer(serializers.ModelSerializer):
@@ -17,7 +18,8 @@ class TileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tile
         fields = ('id', 'launch_date', 'status', 'task_set', 'owner', 'created_at')
- 
+        # read_only_fields = ("owner",)
+
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()

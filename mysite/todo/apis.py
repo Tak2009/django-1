@@ -1,6 +1,6 @@
 from todo.models import Task, Tile
 from todo.serializers import TaskSerializer, TileSerializer, LoginSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.parsers import JSONParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -31,17 +31,17 @@ class TileViewSet(viewsets.ModelViewSet):
     parser_classes = (JSONParser, MultiPartParser)
 
 
-class LoginView(APIView):
+class LoginTodoView(APIView):
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
         django_login(request, user)
         token, created = Token.objects.get_or_create(user=user)
-        return Response({"token": token.key}, status=200)
+        return Response({"token": token.key, "user_id": user.id}, status=200)
 
 
-class LogoutView(APIView):
+class LogoutTodoView(APIView):
     authentication_classes = (TokenAuthentication, )
 
     def post(self, request):

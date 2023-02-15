@@ -20,6 +20,7 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.views.static import serve
 from django.views.generic import TemplateView
+from todo.apis import LoginTodoView, LogoutTodoView
 from daisy.apis import LoginView, LogoutView
 from django.conf.urls.static import static
 
@@ -36,6 +37,8 @@ urlpatterns = [
     # https://learndjango.com/tutorials/django-login-and-logout-tutorial
     # https://docs.djangoproject.com/en/4.0/topics/auth/default/#module-django.contrib.auth.views
     path('api/v2/', include('todo.api_urls')),
+    path('api/v2/auth/login/', LoginTodoView.as_view()),
+    path('api/v2/auth/logout/', LogoutTodoView.as_view()),
     path('accounts/', include('django.contrib.auth.urls')),
     re_path(r'^oauth/', include('social_django.urls', namespace='social')),
 ]
