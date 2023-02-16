@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import login as django_login, logout as django_logout
 from rest_framework.authtoken.models import Token
 from rest_framework.parsers import JSONParser, MultiPartParser
+from django.core.exceptions import PermissionDenied
 
 
 # ### class ModelViewSet ###
@@ -20,6 +21,24 @@ class TaskViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     parser_classes = (JSONParser, MultiPartParser)
 
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+        return Response(serializer.data)
+
+    def perform_update(self, serializer):
+        obj = self.get_object()
+        if self.request.user != obj.owner: 
+            raise PermissionDenied('You are not allowed to  modify listing')
+        serializer.save()
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if self.request.user != obj.owner: 
+            raise PermissionDenied('You are not allowed to delete')
+        self.perform_destroy(obj)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 # ### class ModelViewSet ###
 class TileViewSet(viewsets.ModelViewSet):
@@ -29,6 +48,24 @@ class TileViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication, SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
     parser_classes = (JSONParser, MultiPartParser)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+        return Response(serializer.data)
+
+    def perform_update(self, serializer):
+        obj = self.get_object()
+        if self.request.user != obj.owner: 
+            raise PermissionDenied('You are not allowed to modify')
+        serializer.save()
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if self.request.user != obj.owner: 
+            raise PermissionDenied('You are not allowed to delete')
+        self.perform_destroy(obj)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class LoginTodoView(APIView):
@@ -47,3 +84,10 @@ class LogoutTodoView(APIView):
     def post(self, request):
         django_logout(request)
         return Response(status=204)
+
+
+
+# Reference 
+# https://ilovedjango.com/django/rest-api-framework/views/tips/sub/modelviewset-django-rest-framework/
+# https://stackoverflow.com/questions/55081085/validate-user-on-update-request-in-django-rest-framework
+# https://stackoverflow.com/questions/46053922/delete-method-on-django-rest-framework-modelviewset

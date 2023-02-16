@@ -10,5 +10,5 @@ router.register('tiles', TileViewSet)
 
 urlpatterns = [
     # ### class ModelViewSet based ###
-    path('todos/', include(router.urls)),
+    path('todo/', include(router.urls)),
 ]
