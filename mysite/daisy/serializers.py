@@ -15,6 +15,7 @@ class PicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pic
         fields = ('id','title', 'pic', 'created_by')
+        read_only_fields = ('created_by', )
 
 
 # https://www.youtube.com/watch?v=g8Sz2mF0ENU&list=PL1WVjBsN-_NJ4urkLt7iVDocVu_ZQgVzF&index=8

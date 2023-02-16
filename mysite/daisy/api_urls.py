@@ -14,7 +14,7 @@ router.register('pics', PicViewSet)
 
 urlpatterns = [
     # ### class ModelViewSet based ###
-    path('pics/', include(router.urls)),
+    path('daisy/', include(router.urls)),
 
     # ### class GenericAPIView based ###
     path('generic/pics/', PicListView.as_view()), # this is equal to: path('generic/pics/', pic_list_view),

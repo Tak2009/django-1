@@ -15,6 +15,7 @@ from django.contrib.auth import login as django_login, logout as django_logout
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
 from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
+from django.core.exceptions import PermissionDenied
 
 # ### class ModelViewSet ###
 class PicViewSet(viewsets.ModelViewSet):
@@ -31,12 +32,30 @@ class PicViewSet(viewsets.ModelViewSet):
     # https://testdriven.io/blog/drf-views-part-3/
     @action(detail=True, methods=['POST'])
     def upload(self, request):
-        serialized = PicSerializer(data=request.data)
-        if serialized.is_valid():
-            serialized.save()
-            return Response(serialized.data)
+        serializer = PicSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
         else:
-            return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+        return Response(serializer.data)
+
+    def perform_update(self, serializer):
+        obj = self.get_object()
+        if self.request.user != obj.created_by: 
+            raise PermissionDenied('You are not allowed to  modify listing')
+        serializer.save()
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if self.request.user != obj.created_by: 
+            raise PermissionDenied('You are not allowed to delete')
+        self.perform_destroy(obj)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 ### class GenericAPIView ###
@@ -159,9 +178,9 @@ class PicListView(generics.GenericAPIView,
 
 class LoginView(APIView):
     def post(self, request):
-        serialized = LoginSerializer(data=request.data)
-        serialized.is_valid(raise_exception=True)
-        user = serialized.validated_data["user"]
+        serializer = LoginSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data["user"]
         django_login(request, user)
         token, created = Token.objects.get_or_create(user=user)
         return Response({"token": token.key}, status=200)
