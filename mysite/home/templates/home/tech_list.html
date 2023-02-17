@@ -3,11 +3,15 @@
 {% block head %} 
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/loader.css' %}">
 {% endblock %}
 
 {% block content %}
 <!-- https://getbootstrap.com/docs/4.0/components/progress/ -->
-<div class="container">
+<div class="loading container">
+    <span class="circle"></span>
+</div>
+<div class="container" style="display: none" id="main-container">
     <h1>Tech Info</h>
     <h2>1. Languages Used</h2>
     <div id="carouselExampleIndicators" class="carousel slide div-cont-2 parent" data-ride="carousel">

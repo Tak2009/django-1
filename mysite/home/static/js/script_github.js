@@ -6,6 +6,8 @@ background = ['#07FFD2', '#07B0FF', '#0734FF', '#5607FF', '#D207FF', '#FF07B0']
 const renderProject = (projects) => {
     const project_list = document.getElementById('project-list');
     const project_detail = document.getElementById('project-detail');
+    const loading = document.querySelector( '.loading' );
+    const main_container = document.getElementById('main-container');
     let project_index = 0
 
     for (project in projects) {
@@ -31,6 +33,8 @@ const renderProject = (projects) => {
         renderLanguagesByProject(projects[project], project_index, project)
         project_index += 1
     }
+    loading.remove();
+    main_container.style.display='';
 }
 
 
@@ -56,5 +60,6 @@ const renderLanguagesByProject = (project, project_index, project_name) => {
         lang_index += 1
     }
 }
+
 
 API.getProjects(project_urls).then(projects => renderProject(projects)).catch(console.log).finally(console.log("done"));
