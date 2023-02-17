@@ -2,7 +2,7 @@ from rest_framework import serializers
 from daisy.models import Pic
 from rest_framework import exceptions
 from django.contrib.auth import authenticate
-from django.conf import settings
+from django.contrib.auth.models import User
 
 # HyperlinkedModelSerializer: https://youtu.be/ruIJdGdgkCw?list=PL1WVjBsN-_NJ4urkLt7iVDocVu_ZQgVzF&t=1313
 # class PicSerializer(serializers.HyperlinkedModelSerializer):
@@ -25,8 +25,9 @@ class PicSerializer(serializers.ModelSerializer):
     def get_created_by(self, obj):
         # print(type(obj.created_by))
         return {
-            "username": obj.created_by.username,
-            "id": obj.created_by.id
+            "id": obj.created_by.id,
+            "first_name": obj.created_by.first_name,
+            "last_name": obj.created_by.last_name
         }
 
 
