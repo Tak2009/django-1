@@ -8,10 +8,15 @@
 <link rel="stylesheet" href="{% static 'css/pic_list_slider.css' %}">
 <!-- slider: -->
 <link rel="stylesheet" href="{% static 'css/pic_list_3d_slide.css' %}">
+<!-- loader -->
+<link rel="stylesheet" href="{% static 'css/loader.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="loading container">
+    <span class="circle"></span>
+</div>
+<div class="container" id="main-container">
     <h1>Cat Monitor</h1>
     <h3>Let's see what she does everyday while she is out of our sight.... To use full functionality, please log in</h3>
     <br/>
@@ -58,5 +63,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
 {% load static %}
 <script src="{% static 'js/slider.js' %}"></script>
+<script src="{% static 'js/loader.js' %}"></script>
 <!-- slider: -->
 {% endblock %}

@@ -1,11 +1,24 @@
+/* https://zenn.dev/catnose99/articles/5081ef6154e530 */
 .loading {
+    z-index: 1000;
+    margin: 0; /* 見出しのマージンを消しておく */
+    position: absolute; /* 絶対配置で画像の中央に配置 */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 57vh;
+}
+
+/* https://webukatu.com/wordpress/blog/28083/ */
+/* .loading {
     position: relative;
     z-index: 1000;
     width: 100%;
     height: 57vh;
     margin: 0;
     padding: 0;
-}
+} */
 
 .loading .circle {
     display: block;
