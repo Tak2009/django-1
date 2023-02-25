@@ -1,0 +1,78 @@
+{% extends "base_menu.html" %}
+{% load app_tags %}
+
+{% block head %} 
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/loader.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container" style="display:''" id="main-container">
+    <h1>Tech Info</h>
+    <h2>1. Languages Used (Rate Limit: 5,000 per Hour With Token)</h2>
+    <div id="carouselExampleIndicators" class="carousel slide div-cont-2 parent" data-ride="carousel">
+        <ol class="carousel-indicators child" id="project-list">
+            {% for key, langs in project_list.items %}
+                {% if key == "django-1" %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to={{ forloop.counter0 }} class="active">
+                    </li>
+                {% else %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to={{ forloop.counter0 }}>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner" id="project-detail">
+            {% for key, langs in project_list.items %}
+                {% if key == "django-1" %}
+                <div class="carousel-item active">
+                    <p style="margin-bottom: 0; margin-left: 2vw; margin-top: 0.5vw; color: white;"><strong>Repository Name: {{key}}</strong></p>
+                    <div class="container py-4" id={{ forloop.counter0 }} style="display: inline-block; min-height: 20vh;">
+                        {% for lang, ratio in langs.items %}
+                            <div class="progress" style="background-color: rgb(245, 152, 66); height: 30px;">
+                                <div class="progress-bar" role="progressbar" style="width: {{ratio}}%; background:{{forloop.counter0|bgcolor}}" aria-valuenow="{{ratio|multipler}}" aria-valuemin="0" aria-valuemax="100" onMouseOut="this.style.background='{{forloop.counter0|bgcolor}}';" onMouseOver="this.style.background='#EEF';">
+                                    <a href="https://github.com/Tak2009/{{key}}/search?l={{lang}}" target="_blank" style="color: #f7f5f5" onMouseOut="this.style.color='#f7f5f5';" onMouseOver="this.style.color='#050505';">
+                                        <p style="margin-bottom: 0; margin-top: 0;">{{lang}}({{ratio}}%)</p>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% else %}
+                    <div class="carousel-item">
+                        <p style="margin-bottom: 0; margin-left: 2vw; margin-top: 0.5vw; color: white;"><strong>Repository Name: {{key}}</strong></p>
+                        <div class="container py-4" id={{ forloop.counter0 }} style="display: inline-block; min-height: 20vh;">
+                            {% for lang, ratio in langs.items %}
+                            <div class="progress" style="background-color: rgb(245, 152, 66); height: 30px;">
+                                <div class="progress-bar" role="progressbar" style="width: {{ratio}}%; background:{{forloop.counter0|bgcolor}}" aria-valuenow="{{ratio|multipler}}" aria-valuemin="0" aria-valuemax="100" onMouseOut="this.style.background='{{forloop.counter0|bgcolor}}';" onMouseOver="this.style.background='#EEF';">
+                                    <a href="https://github.com/Tak2009/{{key}}/search?l={{lang}}" target="_blank" style="color: #f7f5f5" onMouseOut="this.style.color='#f7f5f5';" onMouseOver="this.style.color='#050505';">
+                                        <p style="margin-bottom: 0; margin-top: 0;">{{lang}}({{ratio}}%)</p>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <br/>
+    <h2>2. DRF Web APIs</h2>
+    <h3>
+        These API endpoints are developed for the Raspberry Pi Cat Monitor client device to post all the images to the remote server. 
+        authentication_classes = [TokenAuthentication, SessionAuthentication, BasicAuthentication] is applied.
+    </h3>
+    <br/>
+    <ul>
+        <li style="display: block;">
+            <a href="api/v1/pics/" target="_blank">1. For Admin (full methods available)</a>
+        </li>
+        <li style="display: block;">
+            <a href="api/v1/generic/pics/" target="_blank">2. For Non Admin (GET only)</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

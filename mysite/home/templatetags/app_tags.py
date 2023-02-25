@@ -18,3 +18,16 @@ def gravatar(user, size=35):
     email_hash = md5(email).hexdigest()
     url = "//www.gravatar.com/avatar/{0}?s={1}&d=identicon&r=PG"
     return url.format(email_hash, size)
+
+
+@register.filter(name='multipler')
+def multiply(value):
+    value = float(value)
+    value = value * 100
+    return "{}".format(round(value))
+
+
+@register.filter(name='bgcolor')
+def background(num):
+    background = ['#07FFD2', '#07B0FF', '#0734FF', '#5607FF', '#D207FF', '#FF07B0']
+    return background[num]
