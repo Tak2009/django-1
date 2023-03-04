@@ -29,7 +29,7 @@ except:
     print('Store secret_key.py in the same directory with key = SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'rest_framework', 
+    'rest_framework',
     'rest_framework.authtoken', # https://youtu.be/ekhUhignYTU?list=PL1WVjBsN-_NJ4urkLt7iVDocVu_ZQgVzF&t=783
     'corsheaders', # http://www.srikanthtechnologies.com/blog/python/enable_cors_for_django.aspx, https://github.com/adamchainz/django-cors-headers
     'ckeditor', # RichTextField for onestop app
