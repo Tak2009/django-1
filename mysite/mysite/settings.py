@@ -14,6 +14,23 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+
+# 画像を保存する先の指定
+MEDIA_ROOT = MEDIA_DIR
+# MEDIA_URL： 画像をdjango側で読み込むための設定, ブラウザからアクセスする際のアドレス
+MEDIA_URL = '/media/'
 
 # Used for a default title
 APP_NAME = "Let's Learn Django"
@@ -29,6 +46,11 @@ except:
     print('Store secret_key.py in the same directory with key = SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# media and static folder image issue when debug = False
+# https://www.pythonanywhere.com/forums/topic/12228/
+# https://help.pythonanywhere.com/pages/DjangoStaticFiles/#set-up-a-static-files-mapping
+# https://help.pythonanywhere.com/pages/StaticFiles/
+
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
@@ -172,16 +194,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-STATIC_URL = '/static/'
-
-# 画像を保存する先の指定
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL： 画像をdjango側で読み込むための設定, ブラウザからアクセスする際のアドレス
-MEDIA_URL = '/media/'
 
 # Add the settings below
 
